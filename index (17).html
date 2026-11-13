@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#14532d">
+<title>সুবারামপুর স্পোর্টস ফ্যামিলি — মাঠের হিসাব</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ সুবারামপুর স্পোর্টস ফ্যামিলি — থিম ============ */
+:root {
+  --g900: #0b3d2e; --g800: #0f4a35; --g700: #14532d; --g600: #16a34a; --g500: #22c55e; --g100: #dcfce7;
+  --gold: #f59e0b; --gold-d: #b45309; --gold-l: #fde68a;
+  --bg: #eef5f0; --card: #ffffff; --ink: #14251c; --muted: #5b6f63; --line: #d9e6dc;
+  --red: #dc2626; --red-l: #fee2e2; --blue: #2563eb; --blue-l: #dbeafe;
+  --r: 16px; --shadow: 0 2px 10px rgba(11, 61, 46, .10); --shadow-lg: 0 10px 30px rgba(11, 61, 46, .18);
+  --nav-h: 62px;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: 'Hind Siliguri', 'Noto Sans Bengali', 'SolaimanLipi', -apple-system, 'Segoe UI', sans-serif;
+  font-size: 16px; line-height: 1.6; padding-bottom: calc(var(--nav-h) + 14px);
+}
+h1, h2, h3, h4 { margin: 0 0 .4em; line-height: 1.35; }
+button { font-family: inherit; font-size: 1rem; cursor: pointer; }
+input, select, textarea { font-family: inherit; font-size: 1rem; }
+a { color: var(--g700); }
+
+/* ---------- হেডার ---------- */
+header.hero {
+  position: relative; color: #fff; overflow: hidden;
+  background: linear-gradient(135deg, #072a1f 0%, var(--g700) 45%, var(--g600) 100%);
+  padding: 26px 18px 58px; border-radius: 0 0 28px 28px;
+}
+header.hero::before {
+  content: ''; position: absolute; inset: 0; opacity: .16;
+  background-image: radial-gradient(circle at 12% 30%, #fff 0 2px, transparent 3px),
+    radial-gradient(circle at 85% 65%, #fff 0 2px, transparent 3px),
+    radial-gradient(circle at 60% 20%, #fff 0 1.5px, transparent 2.5px),
+    radial-gradient(circle at 30% 80%, #fff 0 1.5px, transparent 2.5px);
+  background-size: 90px 90px, 130px 130px, 70px 70px, 110px 110px;
+}
+header.hero::after {
+  content: ''; position: absolute; right: -60px; top: -60px; width: 220px; height: 220px;
+  border-radius: 50%; background: radial-gradient(circle, rgba(245, 158, 11, .35), transparent 70%);
+}
+.hero-inner { position: relative; max-width: 980px; margin: 0 auto; display: flex; align-items: center; gap: 14px; }
+.crest {
+  width: 64px; height: 64px; flex: 0 0 64px; border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, var(--gold-l), var(--gold) 60%, var(--gold-d));
+  display: flex; align-items: center; justify-content: center; font-size: 30px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .35), inset 0 0 0 3px rgba(255, 255, 255, .35);
+}
+.hero-txt h1 { font-size: 1.5rem; letter-spacing: .3px; margin: 0; text-shadow: 0 2px 6px rgba(0, 0, 0, .3); }
+.hero-txt p { margin: 2px 0 0; color: var(--gold-l); font-size: .95rem; }
+.hero-top { position: absolute; top: 12px; right: 14px; display: flex; gap: 8px; z-index: 5; }
+@media (max-width: 620px) {
+  .hero-top { position: static; justify-content: flex-end; margin: 0 0 12px auto; }
+  header.hero { padding: 14px 18px 58px; }
+  .hero-inner { margin-top: 6px; }
+}
+.chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px;
+  font-size: .85rem; background: rgba(255, 255, 255, .14); color: #fff; border: 1px solid rgba(255, 255, 255, .25);
+  backdrop-filter: blur(4px); white-space: nowrap;
+}
+.chip.gold { background: rgba(245, 158, 11, .25); border-color: rgba(245, 158, 11, .5); }
+.chip.ok { background: rgba(34, 197, 94, .3); border-color: rgba(34, 197, 94, .6); }
+.chip.err { background: rgba(239, 68, 68, .3); border-color: rgba(239, 68, 68, .55); }
+
+/* ---------- নেভিগেশন ---------- */
+nav.tabs {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 40; height: var(--nav-h);
+  background: #fff; border-top: 1px solid var(--line); display: flex;
+  box-shadow: 0 -4px 18px rgba(11, 61, 46, .08);
+}
+nav.tabs button {
+  flex: 1; border: 0; background: none; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 1px; color: var(--muted); font-size: .78rem; font-weight: 600; padding: 6px 2px;
+}
+nav.tabs button .ic { font-size: 1.3rem; line-height: 1; }
+nav.tabs button.on { color: var(--g700); }
+nav.tabs button.on .ic { transform: scale(1.15); }
+nav.tabs button.on::after {
+  content: ''; position: absolute; top: 0; width: 34px; height: 3px; border-radius: 0 0 4px 4px; background: var(--gold);
+}
+nav.tabs button { position: relative; }
+
+/* ---------- লেআউট ---------- */
+main { max-width: 980px; margin: -34px auto 0; padding: 0 14px 24px; position: relative; }
+section.page { display: none; animation: fadein .25s ease; }
+section.page.on { display: block; }
+@keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--r);
+  padding: 16px; margin-bottom: 14px; box-shadow: var(--shadow);
+}
+.card h2 { font-size: 1.1rem; color: var(--g800); display: flex; align-items: center; gap: 8px; }
+.card h2 .sub { font-weight: 400; font-size: .85rem; color: var(--muted); margin-left: auto; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 560px) { .grid3 { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- হোম স্ট্যাট কার্ড ---------- */
+.stat {
+  border-radius: var(--r); padding: 14px; color: #fff; position: relative; overflow: hidden;
+  background: linear-gradient(140deg, var(--g700), var(--g600)); box-shadow: var(--shadow);
+}
+.stat.alt { background: linear-gradient(140deg, #b45309, var(--gold)); }
+.stat.dark { background: linear-gradient(140deg, #1f2937, #374151); }
+.stat .v { font-size: 1.45rem; font-weight: 700; letter-spacing: .3px; }
+.stat .l { font-size: .85rem; opacity: .92; }
+.stat .em { position: absolute; right: 8px; bottom: 2px; font-size: 2.6rem; opacity: .25; }
+
+/* ---------- সদস্য ---------- */
+.member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.member-card {
+  background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 14px 10px;
+  text-align: center; box-shadow: var(--shadow); position: relative; transition: transform .15s;
+}
+.member-card:hover { transform: translateY(-3px); }
+.avatar {
+  width: 62px; height: 62px; border-radius: 50%; margin: 0 auto 8px; object-fit: cover;
+  border: 3px solid var(--gold); box-shadow: 0 3px 10px rgba(11, 61, 46, .18); background: var(--g100);
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; color: var(--g800);
+  overflow: hidden;
+}
+.member-card .nm { font-weight: 700; font-size: .98rem; }
+.member-card .ph { color: var(--muted); font-size: .82rem; margin-top: 2px; }
+.badge {
+  position: absolute; top: 8px; left: 8px; font-size: .68rem; padding: 2px 8px; border-radius: 999px;
+  background: var(--gold-l); color: var(--gold-d); font-weight: 700;
+}
+.badge.adm { background: var(--red-l); color: var(--red); }
+.m-actions { display: flex; gap: 6px; justify-content: center; margin-top: 8px; }
+.iconbtn {
+  border: 1px solid var(--line); background: #f6faf7; border-radius: 9px; padding: 4px 9px; font-size: .82rem; color: var(--g800);
+}
+.iconbtn.warn { color: var(--red); border-color: #f3caca; background: #fdf5f5; }
+
+/* ---------- ফর্ম ---------- */
+.f-row { margin-bottom: 10px; }
+.f-row label { display: block; font-size: .86rem; font-weight: 600; color: var(--g800); margin-bottom: 4px; }
+.f-row input[type="text"], .f-row input[type="number"], .f-row input[type="date"],
+.f-row input[type="tel"], .f-row input[type="password"], .f-row select, .f-row textarea,
+.inline-form input, .inline-form select {
+  width: 100%; padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 11px; background: #fbfdfb;
+  outline: none; transition: border .15s;
+}
+.f-row input:focus, .f-row select:focus, .f-row textarea:focus { border-color: var(--g600); }
+.btn {
+  border: 0; border-radius: 12px; padding: 10px 18px; font-weight: 700; color: #fff;
+  background: linear-gradient(135deg, var(--g700), var(--g600)); box-shadow: var(--shadow);
+}
+.btn:active { transform: scale(.97); }
+.btn.gold { background: linear-gradient(135deg, var(--gold-d), var(--gold)); color: #3b2504; }
+.btn.ghost { background: #fff; color: var(--g800); border: 1.5px solid var(--line); box-shadow: none; }
+.btn.red { background: linear-gradient(135deg, #b91c1c, var(--red)); }
+.btn.sm { padding: 6px 12px; font-size: .85rem; border-radius: 10px; }
+.btn.block { width: 100%; }
+.dice { font-size: 1.05rem; }
+
+/* ---------- টেবিল ---------- */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; min-width: 420px; }
+th {
+  background: var(--g100); color: var(--g900); text-align: left; padding: 9px 12px; font-size: .84rem;
+  border-bottom: 2px solid var(--line); white-space: nowrap;
+}
+td { padding: 9px 12px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+td.amt, th.amt { text-align: right; font-variant-numeric: tabular-nums; }
+.pos { color: var(--g700); font-weight: 700; }
+.neg { color: var(--red); font-weight: 700; }
+tr.hl { background: #fffbeb; }
+
+/* ---------- টুর্নামেন্ট ---------- */
+.t-card { border-left: 5px solid var(--g600); }
+.t-card .meta { color: var(--muted); font-size: .85rem; margin: 4px 0 10px; display: flex; flex-wrap: wrap; gap: 8px 14px; }
+.tag { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: .78rem; font-weight: 700; }
+.tag.sport { background: var(--g100); color: var(--g800); }
+.tag.fmt { background: var(--blue-l); color: var(--blue); }
+.tag.done { background: var(--gold-l); color: var(--gold-d); }
+.teams-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 8px 0 14px; }
+.chip-t {
+  padding: 5px 13px; background: #f0faf3; border: 1.5px solid var(--line); border-radius: 999px; font-size: .88rem; font-weight: 600;
+  color: var(--g800);
+}
+.chip-t .num { color: var(--gold-d); font-weight: 700; margin-right: 5px; }
+.fx-row {
+  display: flex; align-items: center; gap: 8px; padding: 9px 10px; border: 1px solid var(--line);
+  border-radius: 12px; margin-bottom: 8px; background: #fff; flex-wrap: wrap;
+}
+.fx-ctrl { flex: 1 1 100%; display: flex; align-items: center; gap: 8px; }
+.fx-team { flex: 1; min-width: 90px; font-weight: 600; font-size: .93rem; }
+.fx-team.w { color: var(--g700); }
+.fx-team .win-mark { color: var(--gold); margin-left: 4px; }
+.fx-score { display: flex; align-items: center; gap: 5px; }
+.fx-score input {
+  width: 52px; padding: 6px; text-align: center; border: 1.5px solid var(--line); border-radius: 9px; font-weight: 700;
+}
+.fx-vs { color: var(--muted); font-size: .8rem; font-weight: 700; }
+.fx-actions { display: flex; gap: 6px; }
+.fx-pick { border: 1.5px solid var(--line); background: #f6fbf7; color: var(--g800); border-radius: 9px; padding: 6px 10px; font-weight: 600; font-size: .85rem; }
+.fx-pick.sel { background: var(--g700); color: #fff; border-color: var(--g700); }
+.fx-pick.sel2 { background: var(--gold); color: #3b2504; border-color: var(--gold); }
+.round-title {
+  font-size: .92rem; font-weight: 800; color: var(--gold-d); margin: 16px 0 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.round-title::after { content: ''; flex: 1; height: 1.5px; background: var(--gold-l); }
+.champ {
+  text-align: center; padding: 18px; border-radius: var(--r); color: #3b2504;
+  background: linear-gradient(135deg, #fef3c7, var(--gold-l)); border: 2px dashed var(--gold);
+}
+.champ .cup { font-size: 2.6rem; }
+.champ .nm { font-size: 1.25rem; font-weight: 800; }
+.pending-draw {
+  text-align: center; padding: 22px 14px; border: 2px dashed var(--line); border-radius: var(--r); background: #f6fbf7; color: var(--muted);
+}
+
+/* ---------- পয়েন্ট টেবিল ব্যাজ ---------- */
+.pos-badge {
+  width: 26px; height: 26px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: .85rem; background: var(--g100); color: var(--g800);
+}
+.pos-badge.g1 { background: var(--gold); color: #3b2504; }
+.pos-badge.g2 { background: #cbd5e1; color: #1e293b; }
+.pos-badge.g3 { background: #d9a06b; color: #431407; }
+.pos-badge.q { background: var(--blue-l); color: var(--blue); }
+
+/* ---------- লেনদেন লিস্ট ---------- */
+.tx { display: flex; align-items: center; gap: 10px; padding: 10px 4px; border-bottom: 1px dashed var(--line); }
+.tx:last-child { border-bottom: 0; }
+.tx .ico { width: 38px; height: 38px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex: 0 0 38px; }
+.tx .ico.in { background: var(--g100); }
+.tx .ico.out { background: var(--red-l); }
+.tx .tx-main { flex: 1; min-width: 0; }
+.tx .tx-t { font-weight: 700; font-size: .95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tx .tx-s { color: var(--muted); font-size: .8rem; }
+.tx .tx-a { font-weight: 800; white-space: nowrap; }
+
+/* ---------- মোডাল ---------- */
+.overlay {
+  position: fixed; inset: 0; background: rgba(7, 42, 31, .55); z-index: 60; display: none;
+  align-items: flex-end; justify-content: center; backdrop-filter: blur(3px);
+}
+.overlay.on { display: flex; }
+.modal {
+  background: #fff; width: 100%; max-width: 480px; max-height: 88vh; overflow-y: auto;
+  border-radius: 22px 22px 0 0; padding: 20px 18px 26px; animation: up .25s ease;
+}
+@keyframes up { from { transform: translateY(40px); opacity: .4; } to { transform: none; opacity: 1; } }
+@media (min-width: 560px) {
+  .overlay { align-items: center; }
+  .modal { border-radius: 20px; padding-bottom: 20px; }
+}
+.modal.wide { max-width: 760px; }
+.modal h3 { color: var(--g800); display: flex; align-items: center; gap: 8px; }
+.modal .close-x { margin-left: auto; border: 0; background: var(--g100); border-radius: 50%; width: 32px; height: 32px; color: var(--g800); font-size: 1rem; }
+.photo-pick { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.photo-pick .avatar { margin: 0; width: 66px; height: 66px; cursor: pointer; }
+.photo-pick .hint { color: var(--muted); font-size: .82rem; }
+
+/* ---------- টোস্ট ---------- */
+#toast {
+  position: fixed; bottom: calc(var(--nav-h) + 16px); left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--g900); color: #fff; padding: 10px 20px; border-radius: 999px; font-size: .9rem; font-weight: 600;
+  opacity: 0; pointer-events: none; transition: all .25s; z-index: 80; max-width: 86vw; text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+#toast.on { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ---------- সহায়তা ---------- */
+.step { display: flex; gap: 12px; margin-bottom: 12px; }
+.step .n {
+  width: 30px; height: 30px; flex: 0 0 30px; border-radius: 50%; background: var(--g700); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: .9rem;
+}
+.step p { margin: 3px 0 0; font-size: .93rem; }
+.note {
+  background: #fffbeb; border: 1px solid var(--gold-l); border-radius: 12px; padding: 10px 14px; font-size: .9rem;
+  color: #713f12; margin: 10px 0;
+}
+.note.red { background: var(--red-l); border-color: #fbc9c9; color: #7f1d1d; }
+.kbd { background: #eef2f0; border: 1px solid var(--line); border-radius: 6px; padding: 1px 7px; font-size: .85em; font-weight: 700; }
+.roadmap li { margin-bottom: 7px; font-size: .93rem; }
+
+/* ---------- খালি অবস্থা ---------- */
+.empty { text-align: center; color: var(--muted); padding: 26px 10px; }
+.empty .em { font-size: 2.4rem; display: block; margin-bottom: 6px; }
+
+/* ---------- ডেস্কটপ ---------- */
+@media (min-width: 760px) {
+  body { padding-bottom: 24px; }
+  nav.tabs {
+    position: sticky; bottom: auto; top: 0; height: auto; padding: 8px 14px; justify-content: center; gap: 8px;
+    border-top: 0; border-bottom: 1px solid var(--line);
+  }
+  nav.tabs button { flex: 0 0 auto; flex-direction: row; gap: 8px; padding: 9px 18px; font-size: .95rem; border-radius: 999px; }
+  nav.tabs button.on { background: var(--g700); color: #fff; }
+  nav.tabs button.on::after { display: none; }
+  main { margin-top: 18px; }
+  #toast { bottom: 26px; }
+  .fx-score input { width: 62px; }
+}
+/* ---------- অ্যাডমিন মোড ---------- */
+body:not(.is-admin) .admin-only { display: none !important; }
+
+@media print { nav.tabs, .hero-top, .m-actions, .btn { display: none !important; } }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-top">
+    <span class="chip" id="cloudChip" onclick="UI.openCloud()">☁️ ক্লাউড বন্ধ</span>
+    <button class="chip gold admin-chip" id="adminChip" onclick="UI.adminEntry()">🔒 অ্যাডমিন</button>
+  </div>
+  <div class="hero-inner">
+    <div class="crest">🏆</div>
+    <div class="hero-txt">
+      <h1 id="siteName">সুবারামপুর স্পোর্টস ফ্যামিলি</h1>
+      <p id="siteTag">⚽ খেলায় ঐক্য, হিসাবে স্বচ্ছতা — সুবারামপুর</p>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button data-page="home" class="on"><span class="ic">🏠</span>হোম</button>
+  <button data-page="members"><span class="ic">👥</span>সদস্য</button>
+  <button data-page="finance"><span class="ic">💰</span>হিসাব</button>
+  <button data-page="tourney"><span class="ic">🥅</span>টুর্নামেন্ট</button>
+  <button data-page="help"><span class="ic">📖</span>সহায়তা</button>
+</nav>
+
+<main>
+  <!-- ================= হোম ================= -->
+  <section class="page on" id="page-home">
+    <div class="grid3" id="homeStats"></div>
+    <div class="card" id="noticeBox" style="display:none">
+      <h2>📢 নোটিশ বোর্ড</h2>
+      <div id="noticeList"></div>
+      <button class="btn ghost sm admin-only" style="margin-top:8px" onclick="UI.noticeModal()">➕ নোটিশ দাও</button>
+    </div>
+    <div class="card">
+      <h2>🧾 সাম্প্রতিক লেনদেন <span class="sub" id="txCount"></span></h2>
+      <div id="recentTx"></div>
+      <button class="btn ghost sm" style="margin-top:10px" onclick="UI.go('finance')">সব হিসাব দেখো →</button>
+    </div>
+    <div class="card">
+      <h2>🥅 চলমান টুর্নামেন্ট</h2>
+      <div id="homeTours"></div>
+    </div>
+    <div class="card" id="firstRun" style="display:none">
+      <h2>🚀 শুরু করার ধাপ</h2>
+      <div class="step"><div class="n">১</div><p><b>অ্যাডমিন লগইন</b> — উপরে ডানদিকে <b>🔒 অ্যাডমিন</b> বাটনে চাপো। প্রথমবারের পাসওয়ার্ড: <span class="kbd">1234</span> (তারপর সাথে সাথে নতুন পাসওয়ার্ড সেট করো)।</p></div>
+      <div class="step"><div class="n">২</div><p><b>সদস্য যোগ করো</b> — সদস্য পাতায় সবার নাম, ফোন ও ছবি দাও।</p></div>
+      <div class="step"><div class="n">৩</div><p><b>টাকা ও খরচ লেখো</b> — হিসাব পাতায় কে কত দিল আর লাইট/বিল/বলের খরচ সাজিয়ে রাখো।</p></div>
+      <div class="step"><div class="n">৪</div><p><b>টুর্নামেন্ট বানাও</b> — নকআউট, লিগ বা গ্রুপ — 🎲 ড্র চাপলেই ম্যাচ সাজে যায়।</p></div>
+    </div>
+  </section>
+
+  <!-- ================= সদস্য ================= -->
+  <section class="page" id="page-members">
+    <div class="card">
+      <h2>👥 আমাদের পরিবার <span class="sub" id="memCount"></span></h2>
+      <button class="btn admin-only" style="margin-bottom:12px" onclick="UI.memberModal()">➕ নতুন সদস্য যোগ করো</button>
+      <div id="memberGrid" class="member-grid"></div>
+    </div>
+    <div class="card">
+      <h2>🏅 ফান্ডে অবদান <span class="sub">কে কত টাকা দিয়েছে</span></h2>
+      <div class="tbl-wrap"><table id="contribTable"></table></div>
+    </div>
+  </section>
+
+  <!-- ================= হিসাব ================= -->
+  <section class="page" id="page-finance">
+    <div class="grid3" id="finStats"></div>
+    <div class="card admin-only" style="border-left:5px solid var(--gold)">
+      <h2>➕ নতুন এন্ট্রি</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" onclick="UI.incomeModal()">💵 টাকা জমা (আয়)</button>
+        <button class="btn gold" onclick="UI.expenseModal()">🧾 খরচ (ব্যায়)</button>
+      </div>
+    </div>
+    <div class="card">
+      <h2>💵 যারা টাকা দিয়েছে <span class="sub" id="incCount"></span></h2>
+      <div class="tbl-wrap"><table id="incomeTable"></table></div>
+    </div>
+    <div class="card">
+      <h2>🧾 খরচের খাত <span class="sub" id="expCount"></span></h2>
+      <div class="tbl-wrap"><table id="expenseTable"></table></div>
+    </div>
+    <div class="card">
+      <h2>📊 খাতভিত্তিক খরচ</h2>
+      <div id="catBars"></div>
+    </div>
+  </section>
+
+  <!-- ================= টুর্নামেন্ট ================= -->
+  <section class="page" id="page-tourney">
+    <div class="card admin-only">
+      <h2>➕ নতুন টুর্নামেন্ট</h2>
+      <button class="btn" onclick="UI.tourModal()">🏆 টুর্নামেন্ট তৈরি করো</button>
+    </div>
+    <div id="tourList"></div>
+  </section>
+
+  <!-- ================= সহায়তা ================= -->
+  <section class="page" id="page-help">
+    <div class="card">
+      <h2>📖 কিভাবে ব্যবহার করবে</h2>
+      <div class="step"><div class="n">১</div><p><b>অ্যাডমিন:</b> 🔒 অ্যাডমিন বাটন → পাসওয়ার্ড দাও। তখনই যোগ/বদল/মুছার বাটনগুলো দেখা যাবে।</p></div>
+      <div class="step"><div class="n">২</div><p><b>সাধারণ সদস্য:</b> কিছু চাপতে হবে না — সবাই হিসাব, সদস্য আর টুর্নামেন্ট দেখতে পারবে, কিন্তু বদলাতে পারবে না।</p></div>
+      <div class="step"><div class="n">৩</div><p><b>ছবি:</b> সদস্য যোগ/এডিটে গোল ঘরে চাপ দিয়ে ফোন থেকে ছবি বাছো — ছোট করে সেভ হয়, তাই জায়গা নষ্ট হয় না।</p></div>
+      <div class="step"><div class="n">৪</div><p><b>টুর্নামেন্ট:</b> টুর্নামেন্ট তৈরি → 🎲 <b>র‍্যান্ডম ড্র</b> → ম্যাচ শেষে রেজাল্ট দাও → পয়েন্ট টেবিল/ব্র্যাকেট নিজে থেকেই আপডেট হয়।</p></div>
+      <div class="note">💡 সব হিসাব ফোনের ভেতরে (লোকাল) জমা থাকে। সবার ফোনে একই হিসাব দেখাতে চাইলে নিচের <b>ক্লাউড সিঙ্ক</b> সেট করো — দাম শূন্য টাকা।</div>
+    </div>
+    <div class="card">
+      <h2>🔐 পাসওয়ার্ড ও নিরাপত্তা</h2>
+      <button class="btn ghost admin-only" onclick="UI.pwModal()">🔑 পাসওয়ার্ড বদলাও</button>
+      <p style="color:var(--muted);font-size:.9rem;margin-top:10px">পাসওয়ার্ড কোথাও সরাসরি জমা হয় না — শুধু SHA-256 হ্যাশ রাখা হয়, তাই চুরি হলেও আসল পাসওয়ার্ড পাওয়া যায় না।</p>
+      <div class="note red admin-only" style="margin-top:8px">⚠️ পাসওয়ার্ড ভুলে গেলে ক্লাউড/ব্যাকআপ ছাড়া উদ্ধার করা যায় না। ব্যাকআপে পুরনো পাসওয়ার্ড-হ্যাশ থাকে, তাই রিস্টোর করলে পুরনোটাই চলে।</div>
+    </div>
+    <div class="card admin-only">
+      <h2>☁️ ক্লাউড সিঙ্ক (ঐচ্ছিক)</h2>
+      <p style="font-size:.92rem;color:var(--muted)">সবার ফোনে লাইভ একই হিসাব দেখাতে ফায়ারবেস (গুগল) ব্যবহার করা যায়। ধাপগুলো আমাদের <b>README-BANGLA.md</b> ফাইলে বাংলায় আছে।</p>
+      <button class="btn" onclick="UI.openCloud()">⚙️ ক্লাউড সেটআপ</button>
+      <button class="btn ghost" onclick="Cloud.syncNow()">🔄 এখনই সিঙ্ক করো</button>
+    </div>
+    <div class="card admin-only">
+      <h2>💾 ব্যাকআপ ও রিস্টোর</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" onclick="UI.backup()">⬇️ ব্যাকআপ নামাও</button>
+        <label class="btn ghost" style="position:relative;overflow:hidden">⬆️ ব্যাকআপ ভরাও
+          <input type="file" id="restoreFile" accept=".json" style="position:absolute;inset:0;opacity:0;cursor:pointer" onchange="UI.restore(this)">
+        </label>
+        <button class="btn red" onclick="UI.wipe()">🗑️ সব মুছে ফেলো</button>
+      </div>
+      <div class="note">নিয়ম করে মাসে একবার <b>ব্যাকআপ নামাও</b> — ফোন হারালে বা বদলালে সব হিসাব এক ফাইলে বেঁচে থাকবে।</div>
+    </div>
+    <div class="card">
+      <h2>🗺️ আগামী রোডম্যাপ</h2>
+      <ul class="roadmap">
+        <li>✅ <b>পর্ব ১ (এখনই আছে):</b> সদস্য+ছবি, আয়-ব্যায় হিসাব, খাতভিত্তিক খরচ, নোটিশ, অ্যাডমিন প্যানেল, ব্যাকআপ</li>
+        <li>✅ <b>পর্ব ২ (এখনই আছে):</b> টুর্নামেন্ট — নকআউট/লিগ/গ্রুপ, র‍্যান্ডম ড্র, পয়েন্ট টেবিল, ব্র্যাকেট</li>
+        <li>☁️ <b>পর্ব ৩:</b> ফায়ারবেস ক্লাউড সিঙ্ক — সবার ফোনে লাইভ একই হিসাব (সেটআপ গাইড README-BANGLA.md-তে)</li>
+        <li>📸 <b>পর্ব ৪ (ভবিষ্যতের আইডিয়া):</b> মাসিক চাঁদার রিমাইন্ডার, খরচের রশিদের ছবি, ম্যাচের হাইলাইট ছবি</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>🌐 GitHub Pages এ ছাড়া</h2>
+      <div class="step"><div class="n">১</div><p>github.com-এ ফ্রি অ্যাকাউন্ট খোলো → নতুন রিপোজিটরি বানাও (Public)।</p></div>
+      <div class="step"><div class="n">২</div><p>এই <span class="kbd">index.html</span> ফাইলটা রিপোতে আপলোড করো (ফাইল যোগ → টেনে ছাড়ো → Commit)।</p></div>
+      <div class="step"><div class="n">৩</div><p>Settings → Pages → Branch: <span class="kbd">main</span> বাছো → Save। এক মিনিটে লিঙ্ক তৈরি: <span class="kbd">username.github.io/repo-name</span></p></div>
+      <div class="step"><div class="n">৪</div><p>সেই লিঙ্কটা WhatsApp গ্রুপে ছাড়ো — সবাই খুলেই হিসাব দেখা শুরু করবে।</p></div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= মোডাল ================= -->
+<div class="overlay" id="overlay" onclick="if(event.target===this)UI.closeModal()">
+  <div class="modal" id="modalBox"></div>
+</div>
+<div id="toast"></div>
+
+<div style="max-width:980px;margin:10px auto 6px;padding:0 16px;color:var(--muted);font-size:.8rem;text-align:center">
+  🏆 <span id="footName">সুবারামপুর স্পোর্টস ফ্যামিলি</span> — ভালোবাসা দিয়ে বানানো · <span id="footDate"></span>
+</div>
+<script>
+/* ============================================================
+   সুবারামপুর স্পোর্টস ফ্যামিলি — কোর লজিক (pure functions)
+   ব্রাউজার ও Node দুই জায়গায় একই ফাইল চলে।
+   ============================================================ */
+'use strict';
+const SPF = {};
+
+/* ---------- বাংলা সংখ্যা ও টাকা ---------- */
+const BN_D = '০১২৩৪৫৬৭৮৯';
+SPF.bn = function bn(x) {
+  if (x === null || x === undefined || x === '') return '';
+  return String(x).replace(/[0-9]/g, d => BN_D[+d]);
+};
+SPF.money = function money(n) {
+  const v = Number(n || 0);
+  const neg = v < 0;
+  const s = Math.abs(v).toLocaleString('en-IN'); // ১,২৩,৪৫৬ স্টাইল গ্রুপিং
+  return (neg ? '−৳ ' : '৳ ') + SPF.bn(s);
+};
+SPF.num = function num(n) { return SPF.bn(Number(n || 0).toLocaleString('en-IN')); };
+
+const BN_MONTHS = ['জানু', 'ফেব্রু', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্ট', 'অক্টো', 'নভে', 'ডিসে'];
+SPF.bnDate = function bnDate(v) {
+  if (!v) return '';
+  let d;
+  if (typeof v === 'number') d = new Date(v);
+  else { const p = String(v).split('-').map(Number); if (p.length === 3 && !isNaN(p[0])) d = new Date(p[0], p[1] - 1, p[2]); else d = new Date(v); }
+  if (!d || isNaN(d.getTime())) return '';
+  return SPF.bn(d.getDate()) + ' ' + BN_MONTHS[d.getMonth()] + ' ' + SPF.bn(d.getFullYear());
+};
+SPF.today = function today() {
+  const d = new Date();
+  const p = n => String(n).padStart(2, '0');
+  return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate());
+};
+
+/* ---------- id ও সময় ---------- */
+SPF.uid = function uid() {
+  return 'x' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+};
+
+/* ---------- SHA-256 (pure JS, UTF-8 নিরাপদ) ---------- */
+SPF.sha256 = function sha256(str) {
+  // UTF-8 এনকোড: বাংলা অক্ষরও সঠিকভাবে হ্যাশ হবে
+  const msg = unescape(encodeURIComponent(String(str)));
+  const K = [
+    0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+    0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+    0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+    0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+    0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+    0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+    0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+    0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+  ];
+  const H = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19];
+  const l = msg.length;
+  const total = (Math.ceil((l + 1 + 8) / 64)) * 64;
+  const bytes = new Uint8Array(total);
+  for (let i = 0; i < l; i++) bytes[i] = msg.charCodeAt(i) & 0xff;
+  bytes[l] = 0x80;
+  const bits = l * 8;
+  const bitLenHi = Math.floor(bits / 4294967296);
+  const bitLenLo = bits >>> 0;
+  bytes[total - 8] = (bitLenHi >>> 24) & 0xff;
+  bytes[total - 7] = (bitLenHi >>> 16) & 0xff;
+  bytes[total - 6] = (bitLenHi >>> 8) & 0xff;
+  bytes[total - 5] = bitLenHi & 0xff;
+  bytes[total - 4] = (bitLenLo >>> 24) & 0xff;
+  bytes[total - 3] = (bitLenLo >>> 16) & 0xff;
+  bytes[total - 2] = (bitLenLo >>> 8) & 0xff;
+  bytes[total - 1] = bitLenLo & 0xff;
+
+  const rr = (x, n) => (x >>> n) | (x << (32 - n));
+  const w = new Array(64);
+  for (let off = 0; off < total; off += 64) {
+    for (let i = 0; i < 16; i++) {
+      const j = off + i * 4;
+      w[i] = (bytes[j] << 24) | (bytes[j + 1] << 16) | (bytes[j + 2] << 8) | bytes[j + 3];
+    }
+    for (let i = 16; i < 64; i++) {
+      const s0 = rr(w[i - 15], 7) ^ rr(w[i - 15], 18) ^ (w[i - 15] >>> 3);
+      const s1 = rr(w[i - 2], 17) ^ rr(w[i - 2], 19) ^ (w[i - 2] >>> 10);
+      w[i] = (w[i - 16] + s0 + w[i - 7] + s1) >>> 0;
+    }
+    let [a, b, c, d, e, f, g, h] = H;
+    for (let i = 0; i < 64; i++) {
+      const S1 = rr(e, 6) ^ rr(e, 11) ^ rr(e, 25);
+      const ch = (e & f) ^ (~e & g);
+      const t1 = (h + S1 + ch + K[i] + w[i]) >>> 0;
+      const S0 = rr(a, 2) ^ rr(a, 13) ^ rr(a, 22);
+      const maj = (a & b) ^ (a & c) ^ (b & c);
+      const t2 = (S0 + maj) >>> 0;
+      h = g; g = f; f = e; e = (d + t1) >>> 0;
+      d = c; c = b; b = a; a = (t1 + t2) >>> 0;
+    }
+    H[0] = (H[0] + a) >>> 0; H[1] = (H[1] + b) >>> 0; H[2] = (H[2] + c) >>> 0; H[3] = (H[3] + d) >>> 0;
+    H[4] = (H[4] + e) >>> 0; H[5] = (H[5] + f) >>> 0; H[6] = (H[6] + g) >>> 0; H[7] = (H[7] + h) >>> 0;
+  }
+  return H.map(x => x.toString(16).padStart(8, '0')).join('');
+};
+
+/* ---------- র‍্যান্ডম শাফল (Fisher–Yates) ---------- */
+SPF.shuffle = function shuffle(arr) {
+  const a = [...arr];
+  const n = a.length;
+  let rnd = null;
+  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+    rnd = crypto.getRandomValues(new Uint32Array(n));
+  }
+  for (let i = n - 1; i > 0; i--) {
+    const r = rnd ? (rnd[i] % (i + 1)) : Math.floor(Math.random() * (i + 1));
+    [a[i], a[r]] = [a[r], a[i]];
+  }
+  return a;
+};
+
+/* ---------- রাউন্ড-রবিন (circle method) ---------- */
+/* ফেরত: রাউন্ডের অ্যারে, প্রতি রাউন্ডে [idA, idB] জোড়ার অ্যারে */
+SPF.roundRobin = function roundRobin(ids) {
+  const a = [...ids];
+  if (a.length < 2) return [];
+  if (a.length % 2 === 1) a.push(null); // বাই
+  const n = a.length;
+  const rounds = [];
+  for (let r = 0; r < n - 1; r++) {
+    const pairs = [];
+    for (let i = 0; i < n / 2; i++) {
+      const x = a[i], y = a[n - 1 - i];
+      if (x !== null && y !== null) pairs.push([x, y]);
+    }
+    rounds.push(pairs);
+    a.splice(1, 0, a.pop()); // ঘুরিয়ে দাও
+  }
+  return rounds;
+};
+
+/* ---------- নকআউট ব্র্যাকেট ---------- */
+SPF.nextPow2 = function nextPow2(n) {
+  let p = 1;
+  while (p < n) p *= 2;
+  return Math.max(p, 2);
+};
+/* order: শাফল করা দলের অ্যারে; বাই দিয়ে pow2 পর্যন্ত প্যাড করা হয় (বাই যায় শীর্ষ দলগুলোর বিপক্ষে)
+   ফেরত: rounds = [ [ {id,a,b,sA,sB,winnerId,played} ... ] ... ] */
+SPF.buildKnockout = function buildKnockout(order) {
+  const n = SPF.nextPow2(order.length);
+  const padded = [...order];
+  while (padded.length < n) padded.push(null);
+  const rounds = [];
+  let cur = [];
+  // আয়না-জোড়া: ম্যাচ i = (order[i], order[n-1-i]) — বাই উপরের দলগুলোর জন্য
+  for (let i = 0; i < n / 2; i++) {
+    const a = padded[i], b = padded[n - 1 - i];
+    cur.push({ id: 'r1m' + i, a, b, sA: null, sB: null, winnerId: null, played: false, bye: (a !== null) !== (b !== null) });
+  }
+  rounds.push(cur);
+  while (cur.length > 1) {
+    const next = [];
+    for (let i = 0; i < cur.length; i += 2) {
+      next.push({ id: 'r' + (rounds.length + 1) + 'm' + (i / 2), a: null, b: null, sA: null, sB: null, winnerId: null, played: false });
+    }
+    rounds.push(next);
+    cur = next;
+  }
+  SPF.advanceWinners(rounds);
+  return rounds;
+};
+SPF.winnerOf = function winnerOf(m) {
+  if (!m) return null;
+  if (m.bye) return m.a; // সত্যিকারের বাই: প্রথম রাউন্ডেই খালি প্রতিপক্ষ
+  if (m.played && m.winnerId) return m.winnerId;
+  return null;
+};
+SPF.advanceWinners = function advanceWinners(rounds) {
+  for (let r = 1; r < rounds.length; r++) {
+    rounds[r].forEach((m, i) => {
+      m.a = SPF.winnerOf(rounds[r - 1][2 * i]);
+      m.b = SPF.winnerOf(rounds[r - 1][2 * i + 1]);
+      // আগের রেজাল্ট বদলালে এই রাউন্ডের পুরনো রেজাল্ট বাতিল
+      if (m.a === null || m.b === null) { m.played = false; m.winnerId = null; m.sA = null; m.sB = null; }
+    });
+  }
+};
+SPF.roundName = function roundName(rounds, r) {
+  const total = rounds.length;
+  const fromEnd = total - r;
+  if (fromEnd === 1) return 'ফাইনাল';
+  if (fromEnd === 2) return 'সেমিফাইনাল';
+  if (fromEnd === 3) return 'কোয়ার্টার ফাইনাল';
+  return 'রাউন্ড ' + SPF.bn(r + 1);
+};
+
+/* ---------- পয়েন্ট টেবিল ---------- */
+SPF.standings = function standings(matches, teamIds, pts) {
+  const P = pts || { win: 3, draw: 1, loss: 0 };
+  const t = {};
+  teamIds.forEach(id => { t[id] = { id, P: 0, W: 0, D: 0, L: 0, GF: 0, GA: 0, GD: 0, Pts: 0 }; });
+  const scoreOf = m => {
+    if (m.sA !== null && m.sA !== undefined && m.sB !== null && m.sB !== undefined) return [Number(m.sA), Number(m.sB)];
+    if (m.played && m.winnerId) return m.winnerId === m.a ? [1, 0] : [0, 1];
+    return null;
+  };
+  matches.forEach(m => {
+    const sc = scoreOf(m);
+    if (!sc || m.a === null || m.b === null) return;
+    const A = t[m.a], B = t[m.b];
+    if (!A || !B) return;
+    A.P++; B.P++;
+    A.GF += sc[0]; A.GA += sc[1]; B.GF += sc[1]; B.GA += sc[0];
+    if (sc[0] > sc[1]) { A.W++; B.L++; A.Pts += P.win; B.Pts += P.loss; }
+    else if (sc[0] < sc[1]) { B.W++; A.L++; B.Pts += P.win; A.Pts += P.loss; }
+    else { A.D++; B.D++; A.Pts += P.draw; B.Pts += P.draw; }
+  });
+  const rows = Object.values(t);
+  rows.forEach(r => { r.GD = r.GF - r.GA; });
+  rows.sort((x, y) => y.Pts - x.Pts || y.GD - x.GD || y.GF - x.GF || (x.id < y.id ? -1 : 1));
+  return rows;
+};
+
+/* ---------- গ্রুপ বিভাজন ও গ্রুপ-থেকে-নকআউট পেয়ারিং ---------- */
+SPF.splitGroups = function splitGroups(teamIds, gCount) {
+  const shuffled = SPF.shuffle(teamIds);
+  const g = Math.max(2, Math.min(gCount || 2, Math.max(2, Math.floor(teamIds.length / 2))));
+  const groups = Array.from({ length: g }, () => []);
+  shuffled.forEach((id, i) => groups[i % g].push(id));
+  return groups; // প্রতি গ্রুপে একটাও খালি থাকবে না যদি g <= teams/2
+};
+/* গ্রুপ স্ট্যান্ডিং থেকে top-k নিয়ে ক্রস-পেয়ারিং (A1–B2, B1–A2 …) */
+SPF.pairFromGroups = function pairFromGroups(groupRankedList, groupsCount) {
+  // groupRankedList: [[id1,id2,...], [...]] — প্রতি গ্রুপের র‍্যাঙ্ক অনুযায়ী
+  const firsts = groupRankedList.map(g => g[0]).filter(Boolean);
+  const seconds = groupRankedList.map(g => g[1]).filter(Boolean).reverse();
+  const all = [...firsts, ...seconds];
+  if (all.length < 2) return [];
+  const half = all.length / 2;
+  const pairs = [];
+  for (let i = 0; i < half; i++) pairs.push([all[i], all[all.length - 1 - i]]);
+  // একই গ্রুপের দুই দল মুখোমুখি হলে পাশের জোড়ার সাথে অদল-বদল
+  const groupOf = {};
+  groupRankedList.forEach((g, gi) => g.forEach(id => { groupOf[id] = gi; }));
+  for (let i = 0; i < pairs.length; i++) {
+    if (groupOf[pairs[i][0]] === groupOf[pairs[i][1]]) {
+      const j = (i + 1) % pairs.length;
+      [pairs[i][1], pairs[j][1]] = [pairs[j][1], pairs[i][1]];
+    }
+  }
+  return pairs;
+};
+
+/* ---------- স্টেট ডিফল্ট ও মাইগ্রেশন ---------- */
+SPF.defaultState = function defaultState() {
+  return {
+    version: 1,
+    updatedAt: Date.now(),
+    settings: {
+      siteName: 'সুবারামপুর স্পোর্টস ফ্যামিলি',
+      village: 'সুবারামপুর',
+      tagline: 'খেলায় ঐক্য, হিসাবে স্বচ্ছতা',
+      adminHash: SPF.sha256('1234'), // প্রথম লগইনের পরে বদলাতে বলা হবে
+      pwChanged: false
+    },
+    members: [],           // {id,name,phone,photo,role,joinDate,active}
+    income: [],            // {id,memberId,name,amount,category,date,note}
+    expense: [],           // {id,title,amount,category,date,note}
+    notices: [],           // {id,title,body,date}
+    tournaments: []        // নিচে বর্ণনা
+  };
+};
+/* tournament: {id,name,sport,format:'knockout'|'league'|'group',groupCount,
+   teams:[{id,name}], matches:[{id,a,b,sA,sB,winnerId,played,round,group}],
+   bracket:[rounds]|null, groups:[[teamId..]]|null, koStarted:false, drawAt, createdAt} */
+
+SPF.migrate = function migrate(raw) {
+  const def = SPF.defaultState();
+  if (!raw || typeof raw !== 'object') return def;
+  const s = { ...def, ...raw };
+  s.settings = { ...def.settings, ...(raw.settings || {}) };
+  s.members = Array.isArray(raw.members) ? raw.members : [];
+  s.income = Array.isArray(raw.income) ? raw.income : [];
+  s.expense = Array.isArray(raw.expense) ? raw.expense : [];
+  s.notices = Array.isArray(raw.notices) ? raw.notices : [];
+  s.tournaments = Array.isArray(raw.tournaments) ? raw.tournaments : [];
+  s.version = 1;
+  return s;
+};
+
+/* ---------- হিসাবের হিসাব ---------- */
+SPF.totals = function totals(state) {
+  const inc = state.income.reduce((s, x) => s + Number(x.amount || 0), 0);
+  const exp = state.expense.reduce((s, x) => s + Number(x.amount || 0), 0);
+  return { inc, exp, balance: inc - exp };
+};
+SPF.memberTotals = function memberTotals(state) {
+  const map = {};
+  state.members.forEach(m => { map[m.id] = { id: m.id, paid: 0, count: 0 }; });
+  state.income.forEach(x => {
+    if (x.memberId && map[x.memberId]) { map[x.memberId].paid += Number(x.amount || 0); map[x.memberId].count++; }
+  });
+  return Object.values(map).sort((a, b) => b.paid - a.paid);
+};
+SPF.expenseByCategory = function expenseByCategory(state) {
+  const map = {};
+  state.expense.forEach(x => {
+    const c = x.category || 'অন্যান্য';
+    map[c] = (map[c] || 0) + Number(x.amount || 0);
+  });
+  return Object.entries(map).map(([category, total]) => ({ category, total })).sort((a, b) => b.total - a.total);
+};
+
+/* ---------- এক্সপোর্ট রাখার নাম ---------- */
+SPF.backupName = function backupName() {
+  const d = new Date();
+  const p = n => String(n).padStart(2, '0');
+  return 'subarampur-backup-' + d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + '.json';
+};
+
+/* Node টেস্টের জন্য এক্সপোর্ট */
+if (typeof module !== 'undefined' && module.exports) module.exports = SPF;
+globalThis.SPF = SPF;
+</script>
+<script>
+/* ============ অ্যাপ স্টেট, অ্যাডমিন ও রেন্ডারিং ============ */
+'use strict';
+
+const Store = {
+  key: 'spf_state_v1',
+  state: null,
+  load() {
+    let raw = null;
+    try { raw = JSON.parse(localStorage.getItem(this.key) || 'null'); } catch (e) { raw = null; }
+    this.state = SPF.migrate(raw);
+    return this.state;
+  },
+  save() {
+    this.state.updatedAt = Date.now();
+    try { localStorage.setItem(this.key, JSON.stringify(this.state)); }
+    catch (e) { UI.toast('⚠️ ফোনে জায়গা কম — ছবি/ব্যাকআপ সরাও'); }
+    Cloud.push();
+  },
+  replace(newState) {
+    this.state = SPF.migrate(newState);
+    this.save();
+  }
+};
+
+const S = () => Store.state;
+
+/* ---------- UI হেল্পার ---------- */
+const UI = {
+  admin() { return sessionStorage.getItem('spf_admin') === '1'; },
+  esc(s) {
+    return String(s === null || s === undefined ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  },
+  toast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('on');
+    clearTimeout(this._tt);
+    this._tt = setTimeout(() => t.classList.remove('on'), 2600);
+  },
+  modal(html) {
+    document.getElementById('modalBox').innerHTML = html;
+    document.getElementById('overlay').classList.add('on');
+  },
+  closeModal() { document.getElementById('overlay').classList.remove('on'); },
+
+  go(page) {
+    document.querySelectorAll('section.page').forEach(p => p.classList.remove('on'));
+    document.getElementById('page-' + page).classList.add('on');
+    document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.page === page));
+    window.scrollTo({ top: 0 });
+    if (page === 'tourney') Tour.renderList();
+    if (page === 'finance') UI.renderFinance();
+  },
+
+  /* ---------- হোম ---------- */
+  renderHome() {
+    const st = S(), t = SPF.totals(st);
+    const month = SPF.today().slice(0, 7);
+    const mInc = st.income.filter(x => (x.date || '').startsWith(month)).reduce((s, x) => s + Number(x.amount || 0), 0);
+    const mExp = st.expense.filter(x => (x.date || '').startsWith(month)).reduce((s, x) => s + Number(x.amount || 0), 0);
+    const activeT = st.tournaments.filter(x => x.status !== 'done').length;
+    document.getElementById('homeStats').innerHTML =
+      `<div class="stat"><div class="l">💰 মোট তহবিল</div><div class="v">${SPF.money(t.balance)}</div><div class="em">🏟️</div></div>
+       <div class="stat alt"><div class="l">👥 সদস্য</div><div class="v">${SPF.num(st.members.length)} জন</div><div class="em">🤝</div></div>
+       <div class="stat dark"><div class="l">🥅 চলমান টুর্নামেন্ট</div><div class="v">${SPF.num(activeT)} টা</div><div class="em">⚽</div></div>
+       <div class="stat"><div class="l">📈 এই মাসে জমা</div><div class="v">${SPF.money(mInc)}</div></div>
+       <div class="stat alt"><div class="l">📉 এই মাসে খরচ</div><div class="v">${SPF.money(mExp)}</div></div>
+       <div class="stat"><div class="l">✅ মোট আয় − ব্যায়</div><div class="v">${SPF.money(t.inc)} − ${SPF.money(t.exp)}</div></div>`;
+
+    // নোটিশ
+    const nb = document.getElementById('noticeBox');
+    if (st.notices.length) {
+      nb.style.display = '';
+      document.getElementById('noticeList').innerHTML = st.notices.map(n => `
+        <div class="tx"><div class="ico in">📢</div><div class="tx-main">
+          <div class="tx-t">${UI.esc(n.title)}</div><div class="tx-s">${UI.esc(n.body)}</div></div>
+          <div class="tx-s" style="white-space:nowrap">${SPF.bnDate(n.date)}</div></div>`).join('');
+    } else nb.style.display = 'none';
+
+    // সাম্প্রতিক লেনদেন
+    const tx = [...st.income.map(x => ({ ...x, kind: 'in' })), ...st.expense.map(x => ({ ...x, kind: 'out' }))]
+      .sort((a, b) => (b.date || '') < (a.date || '') ? -1 : 1).slice(0, 7);
+    document.getElementById('txCount').textContent = tx.length ? 'শেষ ' + SPF.num(tx.length) + ' টা' : '';
+    document.getElementById('recentTx').innerHTML = tx.length ? tx.map(x => UI.txRow(x)).join('')
+      : '<div class="empty"><span class="em">🧾</span>এখনো কোনো লেনদেন নেই</div>';
+
+    // চলমান টুর্নামেন্ট
+    const ht = st.tournaments.slice(-3).reverse();
+    document.getElementById('homeTours').innerHTML = ht.length ? ht.map(x => Tour.cardMini(x)).join('')
+      : '<div class="empty"><span class="em">🥅</span>কোনো টুর্নামেন্ট নেই — টুর্নামেন্ট পাতা থেকে বানাও</div>';
+
+    document.getElementById('firstRun').style.display = (st.members.length === 0 && !UI.admin()) ? '' : 'none';
+  },
+  txRow(x) {
+    const isin = x.kind === 'in';
+    return `<div class="tx"><div class="ico ${isin ? 'in' : 'out'}">${isin ? '💵' : '🧾'}</div>
+      <div class="tx-main"><div class="tx-t">${UI.esc(isin ? x.name : x.title)}</div>
+      <div class="tx-s">${UI.esc(x.category || '')} · ${SPF.bnDate(x.date)}</div></div>
+      <div class="tx-a ${isin ? 'pos' : 'neg'}">${isin ? '+' : '−'}${SPF.money(x.amount)}</div></div>`;
+  },
+
+  /* ---------- সদস্য ---------- */
+  renderMembers() {
+    const st = S();
+    document.getElementById('memCount').textContent = st.members.length ? SPF.num(st.members.length) + ' জন' : '';
+    document.getElementById('memberGrid').innerHTML = st.members.length ? st.members.map(m => `
+      <div class="member-card">
+        ${m.role === 'admin' ? '<span class="badge adm">অ্যাডমিন</span>' : (m.role === 'captain' ? '<span class="badge">ক্যাপ্টেন</span>' : '')}
+        ${m.photo ? `<img class="avatar" src="${m.photo}" alt="${UI.esc(m.name)}">`
+                  : `<div class="avatar">${UI.esc((m.name || '?').slice(0, 1))}</div>`}
+        <div class="nm">${UI.esc(m.name)}</div>
+        <div class="ph">${m.phone ? '📞 ' + SPF.bn(m.phone) : '⚽ খেলোয়াড়'}</div>
+        <div class="m-actions admin-only">
+          <button class="iconbtn" onclick="UI.memberModal('${m.id}')">✏️</button>
+          <button class="iconbtn warn" onclick="UI.memberDel('${m.id}')">🗑️</button>
+        </div>
+      </div>`).join('')
+      : '<div class="empty" style="grid-column:1/-1"><span class="em">👥</span>কোনো সদস্য নেই — অ্যাডমিন লগইন করে যোগ করো</div>';
+
+    const rows = SPF.memberTotals(st);
+    const names = {}; st.members.forEach(m => { names[m.id] = m.name; });
+    document.getElementById('contribTable').innerHTML = rows.length && rows.some(r => r.paid > 0) ? `
+      <tr><th>#</th><th>সদস্য</th><th class="amt">জমা</th><th class="amt">বার</th></tr>` + rows.map((r, i) => `
+      <tr${i === 0 && r.paid > 0 ? ' class="hl"' : ''}><td>${i < 3 && r.paid > 0 ? ['🥇', '🥈', '🥉'][i] : SPF.bn(i + 1)}</td>
+      <td>${UI.esc(names[r.id] || '—')}</td><td class="amt pos">${SPF.money(r.paid)}</td><td class="amt">${SPF.num(r.count)}</td></tr>`).join('')
+      : '<tr><td style="color:var(--muted)">এখনো কারো জমার হিসাব নেই</td></tr>';
+  },
+  memberModal(id) {
+    const st = S(), m = id ? st.members.find(x => x.id === id) : null;
+    UI.modal(`
+      <h3>${m ? '✏️ সদস্য এডিট' : '➕ নতুন সদস্য'} <button class="close-x" onclick="UI.closeModal()">✕</button></h3>
+      <div class="photo-pick">
+        <div class="avatar" id="phPrev" ${m && m.photo ? `style="background:none"><img src="${m.photo}" style="width:100%;height:100%;object-fit:cover">` : ''} onclick="document.getElementById('phFile').click()">${!(m && m.photo) ? '📷' : ''}</div>
+        <div><b style="font-size:.92rem">ছবি দাও</b><div class="hint">গোল ঘরে চাপো → গ্যালারি/ক্যামেরা</div></div>
+      </div>
+      <input type="file" id="phFile" accept="image/*" style="display:none" onchange="UI.photoPicked(this)">
+      <div class="f-row"><label>নাম *</label><input type="text" id="mName" value="${m ? UI.esc(m.name) : ''}" placeholder="যেমন: রাকিব হাসান"></div>
+      <div class="f-row"><label>ফোন নম্বর</label><input type="tel" id="mPhone" value="${m ? UI.esc(m.phone || '') : ''}" placeholder="01XXXXXXXXX"></div>
+      <div class="f-row"><label>ভূমিকা</label><select id="mRole">
+        <option value="player" ${m && m.role === 'player' ? 'selected' : ''}>খেলোয়াড়</option>
+        <option value="captain" ${m && m.role === 'captain' ? 'selected' : ''}>ক্যাপ্টেন</option>
+        <option value="admin" ${m && m.role === 'admin' ? 'selected' : ''}>অ্যাডমিন</option>
+      </select></div>
+      <div class="f-row"><label>যোগদানের তারিখ</label><input type="date" id="mDate" value="${m ? (m.joinDate || SPF.today()) : SPF.today()}"></div>
+      <button class="btn block" onclick="UI.memberSave('${id || ''}')">💾 সেভ করো</button>`);
+    UI._photo = m ? (m.photo || null) : null;
+  },
+  photoPicked(inp) {
+    const f = inp.files && inp.files[0];
+    if (!f) return;
+    const rd = new FileReader();
+    rd.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const sz = 200, c = document.createElement('canvas');
+        c.width = sz; c.height = sz;
+        const x = c.getContext('2d');
+        const side = Math.min(img.width, img.height);
+        x.drawImage(img, (img.width - side) / 2, (img.height - side) / 2, side, side, 0, 0, sz, sz);
+        UI._photo = c.toDataURL('image/jpeg', 0.72);
+        document.getElementById('phPrev').innerHTML = `<img src="${UI._photo}" style="width:100%;height:100%;object-fit:cover">`;
+      };
+      img.src = e.target.result;
+    };
+    rd.readAsDataURL(f);
+  },
+  memberSave(id) {
+    const name = document.getElementById('mName').value.trim();
+    if (!name) { UI.toast('⚠️ নাম লেখো'); return; }
+    const st = S();
+    const data = {
+      name, phone: document.getElementById('mPhone').value.trim(),
+      role: document.getElementById('mRole').value,
+      joinDate: document.getElementById('mDate').value,
+      photo: UI._photo
+    };
+    if (id) {
+      const m = st.members.find(x => x.id === id);
+      Object.assign(m, data);
+      UI.toast('✏️ সদস্য আপডেট হয়েছে');
+    } else {
+      st.members.push({ id: SPF.uid(), ...data, active: true });
+      UI.toast('🎉 ' + name + ' যোগ হয়েছে');
+    }
+    Store.save(); UI.closeModal(); UI.renderMembers(); UI.renderHome();
+  },
+  memberDel(id) {
+    const st = S(), m = st.members.find(x => x.id === id);
+    if (!confirm('"' + m.name + '" কে মুছবে? (ওর জমার হিসাব আলাদা থেকে যাবে)')) return;
+    st.members = st.members.filter(x => x.id !== id);
+    Store.save(); UI.renderMembers(); UI.renderHome(); UI.toast('🗑️ মুছে ফেলা হয়েছে');
+  },
+
+  /* ---------- হিসাব ---------- */
+  renderFinance() {
+    const st = S(), t = SPF.totals(st);
+    document.getElementById('finStats').innerHTML =
+      `<div class="stat"><div class="l">💵 মোট আয়</div><div class="v">${SPF.money(t.inc)}</div></div>
+       <div class="stat alt"><div class="l">🧾 মোট খরচ</div><div class="v">${SPF.money(t.exp)}</div></div>
+       <div class="stat dark"><div class="l">💰 ব্যালেন্স</div><div class="v">${SPF.money(t.balance)}</div></div>`;
+
+    document.getElementById('incCount').textContent = st.income.length ? SPF.num(st.income.length) + ' টা এন্ট্রি' : '';
+    const names = {}; st.members.forEach(m => { names[m.id] = m.name; });
+    const inc = [...st.income].sort((a, b) => (b.date || '') < (a.date || '') ? -1 : 1);
+    document.getElementById('incomeTable').innerHTML = inc.length ? `
+      <tr><th>তারিখ</th><th>কে দিল</th><th>খাত</th><th class="amt">টাকা</th><th></th></tr>` + inc.map(x => `
+      <tr><td>${SPF.bnDate(x.date)}</td><td>${UI.esc(x.name)}${x.memberId && names[x.memberId] ? '' : ''}</td>
+      <td>${UI.esc(x.category || '—')}</td><td class="amt pos">${SPF.money(x.amount)}</td>
+      <td class="admin-only"><button class="iconbtn warn" onclick="UI.txDel('income','${x.id}')">🗑️</button></td></tr>`).join('')
+      : '<tr><td style="color:var(--muted)">এখনো কেউ টাকা দেয়নি</td></tr>';
+
+    document.getElementById('expCount').textContent = st.expense.length ? SPF.num(st.expense.length) + ' টা এন্ট্রি' : '';
+    const exp = [...st.expense].sort((a, b) => (b.date || '') < (a.date || '') ? -1 : 1);
+    document.getElementById('expenseTable').innerHTML = exp.length ? `
+      <tr><th>তারিখ</th><th>কী খরচ</th><th>খাত</th><th class="amt">টাকা</th><th></th></tr>` + exp.map(x => `
+      <tr><td>${SPF.bnDate(x.date)}</td><td>${UI.esc(x.title)}</td><td>${UI.esc(x.category || '—')}</td>
+      <td class="amt neg">−${SPF.money(x.amount)}</td>
+      <td class="admin-only"><button class="iconbtn warn" onclick="UI.txDel('expense','${x.id}')">🗑️</button></td></tr>`).join('')
+      : '<tr><td style="color:var(--muted)">এখনো কোনো খরচ হয়নি</td></tr>';
+
+    // খাতভিত্তিক বার
+    const cats = SPF.expenseByCategory(st);
+    const max = Math.max(1, ...cats.map(c => c.total));
+    document.getElementById('catBars').innerHTML = cats.length ? cats.map(c => `
+      <div style="margin-bottom:9px">
+        <div style="display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:3px">
+          <b>${UI.esc(c.category)}</b><span class="neg">${SPF.money(c.total)}</span></div>
+        <div style="height:10px;border-radius:99px;background:var(--g100);overflow:hidden">
+          <div style="height:100%;width:${Math.max(4, c.total / max * 100)}%;border-radius:99px;background:linear-gradient(90deg,var(--g600),var(--gold))"></div>
+        </div></div>`).join('')
+      : '<div class="empty"><span class="em">📊</span>খরচ হলে এখানে খাতভিত্তিক চার্ট দেখা যাবে</div>';
+  },
+  incomeModal() {
+    const st = S();
+    UI.modal(`
+      <h3>💵 টাকা জমা <button class="close-x" onclick="UI.closeModal()">✕</button></h3>
+      <div class="f-row"><label>কে দিল *</label><select id="iWho">
+        <option value="">— সদস্য বাছো —</option>
+        ${st.members.map(m => `<option value="${m.id}">${UI.esc(m.name)}</option>`).join('')}
+        <option value="__guest">অন্য কেউ (সদস্য না)</option>
+      </select></div>
+      <div class="f-row" id="iGuestRow" style="display:none"><label>নাম লেখো</label><input type="text" id="iGuest" placeholder="যেমন: আজাদ চাচা"></div>
+      <div class="f-row"><label>টাকা (৳) *</label><input type="number" id="iAmt" min="0" placeholder="যেমন: 500"></div>
+      <div class="f-row"><label>খাত</label><select id="iCat">
+        <option>মাসিক চাঁদা</option><option>ডোনেশন</option><option>টুর্নামেন্ট ফি</option><option>খেলার খরচ (হাতে দেওয়া)</option><option>অন্যান্য</option>
+      </select></div>
+      <div class="f-row"><label>তারিখ</label><input type="date" id="iDate" value="${SPF.today()}"></div>
+      <div class="f-row"><label>নোট (ঐচ্ছিক)</label><input type="text" id="iNote" placeholder="যেমন: এই মাসের চাঁদা"></div>
+      <button class="btn block" onclick="UI.incomeSave()">💾 সেভ করো</button>`);
+    document.getElementById('iWho').addEventListener('change', e => {
+      document.getElementById('iGuestRow').style.display = e.target.value === '__guest' ? '' : 'none';
+    });
+  },
+  incomeSave() {
+    const who = document.getElementById('iWho').value;
+    const amt = Number(document.getElementById('iAmt').value);
+    if (!who) { UI.toast('⚠️ কে দিল বাছো'); return; }
+    if (!amt || amt <= 0) { UI.toast('⚠️ সঠিক টাকার সংখ্যা লেখো'); return; }
+    const st = S();
+    let name, memberId = null;
+    if (who === '__guest') {
+      name = document.getElementById('iGuest').value.trim();
+      if (!name) { UI.toast('⚠️ নাম লেখো'); return; }
+    } else { memberId = who; name = (st.members.find(m => m.id === who) || {}).name || ''; }
+    st.income.push({ id: SPF.uid(), memberId, name, amount: amt, category: document.getElementById('iCat').value, date: document.getElementById('iDate').value, note: document.getElementById('iNote').value.trim() });
+    Store.save(); UI.closeModal(); UI.renderFinance(); UI.renderHome();
+    UI.toast('💵 ' + name + ' — ' + SPF.money(amt) + ' জমা হয়েছে');
+  },
+  expenseModal() {
+    UI.modal(`
+      <h3>🧾 খরচ এন্ট্রি <button class="close-x" onclick="UI.closeModal()">✕</button></h3>
+      <div class="f-row"><label>কী খরচ হলো *</label><input type="text" id="eTitle" placeholder="যেমন: লাইটের বাল্ব কিনলাম"></div>
+      <div class="f-row"><label>খাত *</label><select id="eCat">
+        <option>লাইট / বিদ্যুৎ বিল</option><option>বল ও সরঞ্জাম</option><option>মাঠ / গ্রাউন্ড খরচ</option>
+        <option>পানি ও রিফ্রেশমেন্ট</option><option>টুর্নামেন্ট আয়োজন</option><option>পুরস্কার / প্রাইজ</option>
+        <option>চিকিৎসা</option><option>অন্যান্য</option>
+      </select></div>
+      <div class="f-row"><label>টাকা (৳) *</label><input type="number" id="eAmt" min="0" placeholder="যেমন: 350"></div>
+      <div class="f-row"><label>তারিখ</label><input type="date" id="eDate" value="${SPF.today()}"></div>
+      <div class="f-row"><label>নোট (ঐচ্ছিক)</label><input type="text" id="eNote" placeholder="যেমন: দোকানদার সাইফুল"></div>
+      <button class="btn gold block" onclick="UI.expenseSave()">💾 সেভ করো</button>`);
+  },
+  expenseSave() {
+    const title = document.getElementById('eTitle').value.trim();
+    const amt = Number(document.getElementById('eAmt').value);
+    if (!title) { UI.toast('⚠️ কী খরচ হলো লেখো'); return; }
+    if (!amt || amt <= 0) { UI.toast('⚠️ সঠিক টাকার সংখ্যা লেখো'); return; }
+    const st = S();
+    st.expense.push({ id: SPF.uid(), title, amount: amt, category: document.getElementById('eCat').value, date: document.getElementById('eDate').value, note: document.getElementById('eNote').value.trim() });
+    Store.save(); UI.closeModal(); UI.renderFinance(); UI.renderHome();
+    UI.toast('🧾 ' + title + ' — ' + SPF.money(amt) + ' খরচ হয়েছে');
+  },
+  txDel(kind, id) {
+    if (!confirm('এই এন্ট্রিটা মুছবে?')) return;
+    S()[kind] = S()[kind].filter(x => x.id !== id);
+    Store.save(); UI.renderFinance(); UI.renderHome(); UI.toast('🗑️ এন্ট্রি মুছে ফেলা হয়েছে');
+  },
+
+  /* ---------- নোটিশ ---------- */
+  noticeModal() {
+    UI.modal(`
+      <h3>📢 নোটিশ দাও <button class="close-x" onclick="UI.closeModal()">✕</button></h3>
+      <div class="f-row"><label>শিরোনাম *</label><input type="text" id="nTitle" placeholder="যেমন: শুক্রবার রাত ৮টায় লাইট লাগানো হবে"></div>
+      <div class="f-row"><label>বিস্তারিত</label><textarea id="nBody" rows="3" placeholder="কে, কখন, কত টাকা…"></textarea></div>
+      <div class="f-row"><label>তারিখ</label><input type="date" id="nDate" value="${SPF.today()}"></div>
+      <button class="btn block" onclick="UI.noticeSave()">💾 পোস্ট করো</button>`);
+  },
+  noticeSave() {
+    const title = document.getElementById('nTitle').value.trim();
+    if (!title) { UI.toast('⚠️ শিরোনাম লেখো'); return; }
+    S().notices.unshift({ id: SPF.uid(), title, body: document.getElementById('nBody').value.trim(), date: document.getElementById('nDate').value });
+    if (S().notices.length > 10) S().notices.pop();
+    Store.save(); UI.closeModal(); UI.renderHome(); UI.toast('📢 নোটিশ পোস্ট হয়েছে');
+  },
+
+  /* ---------- অ্যাডমিন ---------- */
+  adminEntry() {
+    if (UI.admin()) {
+      UI.modal(`<h3>🔓 অ্যাডমিন মোড চালু <button class="close-x" onclick="UI.closeModal()">✕</button></h3>
+        <p style="color:var(--muted);font-size:.92rem">এখন তুমি যোগ/বদল/মুছতে পারবে। কাজ শেষে লগআউট করে যেও।</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn ghost" onclick="UI.pwModal()">🔑 পাসওয়ার্ড বদলাও</button>
+        <button class="btn red" onclick="UI.adminOut()">🚪 লগআউট</button></div>`);
+      return;
+    }
+    UI.modal(`
+      <h3>🔒 অ্যাডমিন লগইন <button class="close-x" onclick="UI.closeModal()">✕</button></h3>
+      <div class="f-row"><label>পাসওয়ার্ড</label><input type="password" id="aPw" placeholder="পাসওয়ার্ড দাও" onkeydown="if(event.key==='Enter')UI.adminTry()"></div>
+      <button class="btn block" onclick="UI.adminTry()">🔓 ঢুকে পড়ো</button>
+      <p style="color:var(--muted);font-size:.82rem;margin:10px 0 0">প্রথমবারের পাসওয়ার্ড: 1234 — ঢুকে পড়েই নতুন পাসওয়ার্ড সেট করে নেও।</p>`);
+  },
+  adminTry() {
+    const pw = document.getElementById('aPw').value;
+    if (SPF.sha256(pw) === S().settings.adminHash) {
+      sessionStorage.setItem('spf_admin', '1');
+      UI.closeModal(); UI.applyAdmin(); UI.toast('🔓 অ্যাডমিন মোড চালু');
+      if (!S().settings.pwChanged) setTimeout(() => UI.pwModal(true), 400);
+    } else { UI.toast('❌ পাসওয়ার্ড মিলছে না'); document.getElementById('aPw').value = ''; }
+  },
+  adminOut() {
+    sessionStorage.removeItem('spf_admin');
+    UI.closeModal(); UI.applyAdmin(); UI.toast('🚪 লগআউট হয়েছে');
+  },
+  pwModal(force) {
+    UI.modal(`
+      <h3>🔑 ${force ? 'নতুন পাসওয়ার্ড সেট করো' : 'পাসওয়ার্ড বদলাও'} <button class="close-x" onclick="UI.closeModal()">✕</button></h3>
+      ${force ? '<div class="note">🔐 নিরাপত্তার জন্য প্রথমেই পাসওয়ার্ড বদলাও। কাউকে বলো না — শুধু তুমি জানো।</div>' : ''}
+      <div class="f-row"><label>নতুন পাসওয়ার্ড *</label><input type="password" id="pw1" placeholder="কমপক্ষে ৪ অক্ষর"></div>
+      <div class="f-row"><label>আবার লেখো *</label><input type="password" id="pw2" placeholder="মিলিয়ে দেখো"></div>
+      <button class="btn block" onclick="UI.pwSave()">💾 সেট করো</button>`);
+  },
+  pwSave() {
+    const a = document.getElementById('pw1').value, b = document.getElementById('pw2').value;
+    if (a.length < 4) { UI.toast('⚠️ কমপক্ষে ৪ অক্ষর দাও'); return; }
+    if (a !== b) { UI.toast('⚠️ দুটো মিলছে না'); return; }
+    S().settings.adminHash = SPF.sha256(a);
+    S().settings.pwChanged = true;
+    Store.save(); UI.closeModal(); UI.toast('🔑 পাসওয়ার্ড সেট হয়ে গেছে');
+  },
+  applyAdmin() {
+    document.body.classList.toggle('is-admin', UI.admin());
+    const chip = document.getElementById('adminChip');
+    chip.textContent = UI.admin() ? '✅ অ্যাডমিন মোড' : '🔒 অ্যাডমিন';
+    UI.renderMembers(); UI.renderHome();
+  },
+
+  /* ---------- ব্যাকআপ / রিস্টোর / ওয়াইপ ---------- */
+  backup() {
+    const blob = new Blob([JSON.stringify(S(), null, 1)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = SPF.backupName();
+    a.click(); URL.revokeObjectURL(a.href);
+    UI.toast('⬇️ ব্যাকআপ ফাইল নামছে');
+  },
+  restore(inp) {
+    const f = inp.files && inp.files[0];
+    if (!f) return;
+    const rd = new FileReader();
+    rd.onload = e => {
+      try {
+        const data = JSON.parse(e.target.result);
+        if (!data || (!data.members && !data.income)) throw new Error('bad');
+        if (!confirm('ব্যাকআপ ভরালে এখনকার হিসাব ওটার জায়গায় বসে যাবে। চালিয়ে যাবে?')) return;
+        Store.replace(data);
+        UI.renderAll(); UI.toast('✅ ব্যাকআপ রিস্টোর হয়েছে');
+      } catch (err) { UI.toast('❌ ফাইলটা আমাদের ব্যাকআপ না'); }
+      inp.value = '';
+    };
+    rd.readAsText(f);
+  },
+  wipe() {
+    if (!confirm('⚠️ সব সদস্য, হিসাব, টুর্নামেন্ট মুছে যাবে! আগে ব্যাকআপ নামিয়েছ?')) return;
+    if (!confirm('সত্যিই? এটা আর ফেরানো যাবে না।')) return;
+    localStorage.removeItem(Store.key);
+    Store.state = SPF.defaultState();
+    Store.save();
+    UI.renderAll(); UI.toast('🗑️ সব মুছে ফেলা হয়েছে');
+  },
+
+  renderAll() {
+    UI.applyAdmin();
+    UI.renderFinance();
+    Tour.renderList();
+    document.getElementById('footDate').textContent = SPF.bnDate(SPF.today());
+    document.getElementById('footName').textContent = S().settings.siteName;
+  }
+};
+</script>
+<script>
+/* ============ টুর্নামেন্ট মডিউল ============ */
+'use strict';
+
+const TOUR_SPORTS = { 'ফুটবল': '⚽', 'ক্রিকেট': '🏏', 'ব্যাডমিন্টন': '🏸', 'অন্যান্য খেলা': '🏅' };
+const FMT_LABEL = { knockout: 'নকআউট', league: 'লিগ', group: 'গ্রুপ + নকআউট' };
+
+const Tour = {
+  fmtLabel(f) { return FMT_LABEL[f] || f; },
+  sportEmoji(s) { return TOUR_SPORTS[s] || '🏅'; },
+
+  /* ---------- তালিকা ---------- */
+  cardMini(t) {
+    return `<div class="card t-card" style="margin-bottom:10px">
+      <h2>${this.sportEmoji(t.sport)} ${UI.esc(t.name)} ${t.status === 'done' ? '<span class="tag done">শেষ</span>' : ''}</h2>
+      <div class="meta"><span class="tag fmt">${this.fmtLabel(t.format)}</span>
+      <span class="tag sport">${SPF.num(t.teams.length)} টা দল</span>
+      <span>✅ ${SPF.num(t.matches.filter(m => m.played).length)} ম্যাচ শেষ</span></div>
+      ${this.champ(t) ? `<div class="champ" style="padding:10px"><span class="nm">🏆 চ্যাম্পিয়ন: ${UI.esc(this.teamName(t, this.champ(t)))}</span></div>` : ''}
+    </div>`;
+  },
+  renderList() {
+    const st = S(), el = document.getElementById('tourList');
+    el.innerHTML = st.tournaments.length
+      ? [...st.tournaments].reverse().map(t => `
+        <div class="card t-card">
+          <h2>${this.sportEmoji(t.sport)} ${UI.esc(t.name)} ${t.status === 'done' ? '<span class="tag done">শেষ</span>' : (t.drawAt ? '<span class="tag fmt">চলছে</span>' : '<span class="tag sport">ড্র বাকি</span>')}</h2>
+          <div class="meta">
+            <span class="tag fmt">${this.fmtLabel(t.format)}</span>
+            <span class="tag sport">${SPF.num(t.teams.length)} টা দল</span>
+            <span>✅ ${SPF.num(t.matches.filter(m => m.played).length)}/${SPF.num(t.matches.length)} ম্যাচ</span>
+          </div>
+          <div class="teams-chips">${t.teams.map((tm, i) => `<span class="chip-t"><span class="num">${SPF.bn(i + 1)}</span>${UI.esc(tm.name)}</span>`).join('')}</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn sm" onclick="Tour.open('${t.id}')">👁️ বিস্তারিত দেখো</button>
+            <button class="btn gold sm admin-only" onclick="Tour.doDraw('${t.id}')" ${t.matches.some(m => m.played) ? 'disabled title="রেজাল্ট শুরু হলে আবার ড্র করা যায় না"' : ''}><span class="dice">🎲</span> ${t.drawAt ? 'আবার ড্র' : 'র‍্যান্ডম ড্র করো'}</button>
+            <button class="btn red sm admin-only" onclick="Tour.del('${t.id}')">🗑️</button>
+          </div>
+        </div>`).join('')
+      : '<div class="card"><div class="empty"><span class="em">🥅</span>কোনো টুর্নামেন্ট নেই — উপরে তৈরি করো!<br>ফুটবল ⚽ · ক্রিকেট 🏏 · ব্যাডমিন্টন 🏸 সব হয়</div></div>';
+  },
+
+  /* ---------- তৈরি ---------- */
+  createModal() {
+    UI.modal(`
+      <h3>🏆 নতুন টুর্নামেন্ট <button class="close-x" onclick="UI.closeModal()">✕</button></h3>
+      <div class="f-row"><label>টুর্নামেন্টের নাম *</label><input type="text" id="tName" placeholder="যেমন: সুবারামপুর শীতকালীন ফুটবল টুর্নামেন্ট ২০২৬"></div>
+      <div class="f-row"><label>কোন খেলা?</label><select id="tSport">
+        ${Object.keys(TOUR_SPORTS).map(s => `<option>${s}</option>`).join('')}</select></div>
+      <div class="f-row"><label>ফরম্যাট</label><select id="tFmt">
+        <option value="knockout">নকআউট (এক ম্যাচেই বাদ)</option>
+        <option value="league">লিগ (সবাই সবার সাথে, পয়েন্ট টেবিল)</option>
+        <option value="group">গ্রুপ পর্ব + নকআউট</option></select></div>
+      <div class="f-row" id="tGrpRow" style="display:none"><label>কয়টা গ্রুপ?</label><select id="tGrp">
+        <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+      <div class="f-row"><label>দল / খেলোয়াড়ের নাম (এক লাইনে একটা) *</label>
+        <textarea id="tTeams" rows="5" placeholder="পূর্ব পাড়া ফাইভস
+পশ্চিম পাড়া ইউনাইটেড
+সুবারামপুর একাডেমি
+যুব এগ্রো ক্লাব"></textarea></div>
+      <button class="btn block" onclick="Tour.create()">🎲 তৈরি করো</button>`);
+    document.getElementById('tFmt').addEventListener('change', e => {
+      document.getElementById('tGrpRow').style.display = e.target.value === 'group' ? '' : 'none';
+    });
+  },
+  create() {
+    const name = document.getElementById('tName').value.trim();
+    const teamsRaw = document.getElementById('tTeams').value.split('\n').map(x => x.trim()).filter(Boolean);
+    if (!name) { UI.toast('⚠️ টুর্নামেন্টের নাম লেখো'); return; }
+    if (teamsRaw.length < 2) { UI.toast('⚠️ কমপক্ষে ২টা দল/নাম দাও'); return; }
+    if (new Set(teamsRaw.map(x => x.toLowerCase())).size !== teamsRaw.length) { UI.toast('⚠️ নাম দুইবার এসেছে'); return; }
+    const format = document.getElementById('tFmt').value;
+    const st = S();
+    st.tournaments.push({
+      id: SPF.uid(), name,
+      sport: document.getElementById('tSport').value,
+      format,
+      groupCount: Number(document.getElementById('tGrp') ? document.getElementById('tGrp').value : 2) || 2,
+      teams: teamsRaw.map(n => ({ id: SPF.uid(), name: n })),
+      matches: [], bracket: null, groups: null, koStarted: false,
+      drawAt: null, status: 'draft', createdAt: Date.now()
+    });
+    Store.save(); UI.closeModal(); this.renderList(); UI.renderHome();
+    UI.toast('🏆 ' + name + ' তৈরি — এবার 🎲 ড্র করো');
+  },
+  del(id) {
+    const st = S(), t = st.tournaments.find(x => x.id === id);
+    if (!confirm('"' + t.name + '" টুর্নামেন্ট মুছবে?')) return;
+    st.tournaments = st.tournaments.filter(x => x.id !== id);
+    Store.save(); this.renderList(); UI.renderHome(); UI.toast('🗑️ টুর্নামেন্ট মুছে ফেলা হয়েছে');
+  },
+
+  /* ---------- র‍্যান্ডম ড্র ---------- */
+  doDraw(id) {
+    const st = S(), t = st.tournaments.find(x => x.id === id);
+    if (t.matches.some(m => m.played) && !confirm('কিছু ম্যাচ খেলা হয়ে গেছে — আবার ড্র করলে সব রেজাল্ট মুছে যাবে। চালিয়ে যাবে?')) return;
+    const order = SPF.shuffle(t.teams.map(x => x.id));
+    t.matches = []; t.bracket = null; t.groups = null; t.koStarted = false;
+    if (t.format === 'knockout') {
+      t.bracket = SPF.buildKnockout(order);
+      t.matches = t.bracket.flat().map(m => ({ ...m, round: Number(m.id.slice(1, m.id.indexOf('m'))) - 1 }));
+    } else if (t.format === 'league') {
+      const rounds = SPF.roundRobin(order);
+      t.matches = rounds.flatMap((pairs, r) => pairs.map(([a, b]) => ({
+        id: SPF.uid(), a, b, sA: null, sB: null, winnerId: null, played: false, round: r
+      })));
+    } else { // group
+      t.groups = SPF.splitGroups(order, t.groupCount);
+      t.groups.forEach((g, gi) => {
+        const rounds = SPF.roundRobin(g);
+        t.matches.push(...rounds.flatMap((pairs, r) => pairs.map(([a, b]) => ({
+          id: SPF.uid(), a, b, sA: null, sB: null, winnerId: null, played: false, round: r, group: gi
+        }))));
+      });
+    }
+    t.drawAt = Date.now(); t.status = 'live';
+    Store.save(); this.open(id); this.renderList(); UI.renderHome();
+    UI.toast('🎲 ড্র সম্পন্ন! ম্যাচ সাজানো হয়ে গেছে');
+  },
+
+  teamName(t, id) { const x = t.teams.find(tm => tm.id === id); return x ? x.name : '—'; },
+
+  /* ---------- রেজাল্ট ---------- */
+  saveScore(tid, mid, which, val) {
+    const t = S().tournaments.find(x => x.id === tid);
+    const m = t.matches.find(x => x.id === mid);
+    const v = Math.max(0, Math.min(999, Number(val) || 0));
+    if (which === 'a') m.sA = v; else m.sB = v;
+    if (m.sA !== null && m.sB !== null) {
+      m.played = true;
+      m.winnerId = m.sA > m.sB ? m.a : (m.sB > m.sA ? m.b : null);
+      if (t.bracket) this.syncBracket(t);
+    }
+    this.checkDone(t);
+    Store.save(); this.refreshOpen(t.id);
+  },
+  pickWinner(tid, mid, teamId) {
+    const t = S().tournaments.find(x => x.id === tid);
+    const m = t.matches.find(x => x.id === mid);
+    if (m.played && m.winnerId === teamId) { Object.assign(m, { sA: null, sB: null, winnerId: null, played: false }); }
+    else { m.played = true; m.winnerId = teamId; if (m.sA === null || m.sB === null) { m.sA = 1; m.sB = m.winnerId === m.a ? 0 : 1; } }
+    if (t.bracket) this.syncBracket(t);
+    this.checkDone(t);
+    Store.save(); this.refreshOpen(t.id);
+  },
+  clearResult(tid, mid) {
+    const t = S().tournaments.find(x => x.id === tid);
+    const m = t.matches.find(x => x.id === mid);
+    Object.assign(m, { sA: null, sB: null, winnerId: null, played: false });
+    if (t.bracket) this.syncBracket(t);
+    Store.save(); this.refreshOpen(t.id);
+  },
+  syncBracket(t) {
+    // ব্র্যাকেটের ম্যাচগুলোতে রেজাল্ট কপি করো
+    t.bracket.forEach(round => round.forEach(bm => {
+      const m = t.matches.find(x => x.id === bm.id);
+      if (m) Object.assign(bm, { sA: m.sA, sB: m.sB, winnerId: m.winnerId, played: m.played });
+    }));
+    SPF.advanceWinners(t.bracket);
+    // নতুন উঠে আসা দলগুলো matches-এ যোগ করো (নকআউট রাউন্ড)
+    t.bracket.forEach((round, r) => round.forEach(bm => {
+      let m = t.matches.find(x => x.id === bm.id);
+      if (!m) {
+        m = { ...bm, round: r };
+        t.matches.push(m);
+      } else { m.a = bm.a; m.b = bm.b; if (m.a === null || m.b === null) { m.sA = null; m.sB = null; m.winnerId = null; m.played = false; } }
+    }));
+    this.checkDone(t);
+  },
+  checkDone(t) {
+    const champ = this.champ(t);
+    if (champ && t.status !== 'done') {
+      t.status = 'done';
+      UI.toast('🏆 চ্যাম্পিয়ন: ' + this.teamName(t, champ));
+    } else if (!champ && t.status === 'done') {
+      t.status = 'live'; // রেজাল্ট বদলালে আবার চলমান
+    }
+  },
+  champ(t) {
+    if (t.format === 'knockout' && t.bracket) {
+      const f = t.bracket[t.bracket.length - 1][0];
+      return SPF.winnerOf(f);
+    }
+    if (t.format === 'group' && t.bracket) {
+      const f = t.bracket[t.bracket.length - 1][0];
+      return SPF.winnerOf(f);
+    }
+    if (t.format === 'league' && t.matches.length && t.matches.every(m => m.played)) {
+      const rows = SPF.standings(t.matches, t.teams.map(x => x.id));
+      return rows.length ? rows[0].id : null;
+    }
+    return null;
+  },
+
+  /* ---------- গ্রুপ → নকআউট ---------- */
+  startKO(tid) {
+    const t = S().tournaments.find(x => x.id === tid);
+    if (!t || t.koStarted) return;
+    const ranked = t.groups.map(g => SPF.standings(t.matches.filter(m => m.group !== undefined && g.includes(m.a) && g.includes(m.b)), g).slice(0, 2).map(r => r.id));
+    if (ranked.some(r => r.length < 2)) { UI.toast('⚠️ প্রতি গ্রুপে ২টা দল হওয়া চাই'); return; }
+    const pairs = SPF.pairFromGroups(ranked, t.groups.length);
+    if (!pairs.length) { UI.toast('⚠️ কোয়ালিফাই হয়নি'); return; }
+    // আয়না-জোড়া প্যাটার্নে প্রতিটা জোড়া ঠিক জায়গায় বসতে অর্ডার সাজাই
+    const orderKO = pairs.map(p => p[0]).concat(pairs.map(p => p[1]).reverse());
+    t.bracket = SPF.buildKnockout(orderKO);
+    t.koStarted = true;
+    this.syncBracket(t);
+    Store.save(); this.refreshOpen(t.id);
+    UI.toast('🥊 নকআউট পর্ব শুরু!');
+  },
+
+  /* ---------- বিস্তারিত ভিউ ---------- */
+  open(id) { this._openId = id; UI.modal(''); this.renderDetail(); document.getElementById('modalBox').classList.add('wide'); },
+  refreshOpen(id) { if (this._openId === id) this.renderDetail(); else this.renderList(); },
+  renderDetail() {
+    const st = S(), t = st.tournaments.find(x => x.id === this._openId);
+    if (!t) { UI.closeModal(); return; }
+    const admin = UI.admin();
+    const champ = this.champ(t);
+    let html = `<h3>${this.sportEmoji(t.sport)} ${UI.esc(t.name)}
+      <button class="close-x" onclick="Tour.closeBig()">✕</button></h3>
+      <div class="meta" style="margin-bottom:10px"><span class="tag fmt">${this.fmtLabel(t.format)}</span>
+      <span class="tag sport">${SPF.num(t.teams.length)} টা দল</span>
+      ${t.drawAt ? '<span class="tag sport">🎲 ড্র: ' + SPF.bnDate(t.drawAt) + '</span>' : ''}</div>`;
+
+    if (!t.drawAt) {
+      html += `<div class="pending-draw">🎲 এখনো ড্র হয়নি।<br>অ্যাডমিন <b>র‍্যান্ডম ড্র</b> চাপলেই ম্যাচ সাজে যাবে।</div>
+        <div style="margin-top:10px"><button class="btn gold block admin-only" onclick="Tour.doDraw('${t.id}')"><span class="dice">🎲</span> এখনই র‍্যান্ডম ড্র করো</button></div>`;
+      document.getElementById('modalBox').innerHTML = html;
+      return;
+    }
+
+    // গ্রুপ পর্ব
+    if (t.groups) {
+      html += `<div class="round-title">🧮 গ্রুপ পর্ব</div>`;
+      t.groups.forEach((g, gi) => {
+        const gm = t.matches.filter(m => m.group === gi);
+        const rows = SPF.standings(gm, g);
+        html += `<p style="font-weight:700;color:var(--g800);margin:10px 0 6px">গ্রুপ ${'কখগঘঙ'[gi] || SPF.bn(gi + 1)}</p>
+          <div class="tbl-wrap"><table>
+          <tr><th></th><th>দল</th><th>খ</th><th>জ</th><th>স</th><th>হ</th><th class="amt">গোল</th><th class="amt">পয়েন্ট</th></tr>` +
+          rows.map((r, i) => `<tr><td><span class="pos-badge ${i === 0 ? 'g1' : i === 1 ? 'q' : ''}">${SPF.bn(i + 1)}</span></td>
+            <td>${UI.esc(this.teamName(t, r.id))}</td><td>${SPF.num(r.P)}</td><td>${SPF.num(r.W)}</td>
+            <td>${SPF.num(r.D)}</td><td>${SPF.num(r.L)}</td><td class="amt">${SPF.num(r.GF)}−${SPF.num(r.GA)}</td>
+            <td class="amt" style="font-weight:800">${SPF.num(r.Pts)}</td></tr>`).join('') +
+          `</table></div>`;
+        html += gm.slice().sort((a, b) => a.round - b.round).map(m => this.fxRow(t, m, admin)).join('');
+      });
+      if (!t.koStarted) {
+        const allPlayed = t.matches.filter(m => m.group !== undefined).every(m => m.played);
+        html += `<div style="margin-top:12px"><button class="btn block ${admin && allPlayed ? 'gold' : 'ghost'}" ${!admin || !allPlayed ? 'disabled' : ''}
+          onclick="Tour.startKO('${t.id}')">🥊 গ্রুপ শেষ — নকআউট পর্ব শুরু করো (টপ-২)</button>
+          ${admin && !allPlayed ? '<div class="note">আগে গ্রুপের সব ম্যাচের রেজাল্ট দাও, তারপর এই বাটন চালু হবে।</div>' : ''}</div>`;
+      }
+    }
+
+    // ব্র্যাকেট (নকআউট / গ্রুপ-পরবর্তী)
+    if (t.bracket) {
+      html += `<div class="round-title">${t.groups ? '🥊 নকআউট পর্ব' : '🥊 ড্র ও ম্যাচ'}</div>`;
+      t.bracket.forEach((round, r) => {
+        html += `<p style="font-weight:700;color:var(--gold-d);margin:12px 0 8px">${SPF.roundName(t.bracket, r)}</p>`;
+        html += round.map(m => this.fxRow(t, m, admin)).join('');
+      });
+    }
+
+    // লিগ ফিক্সচার
+    if (t.format === 'league') {
+      html += `<div class="round-title">🗓️ ফিক্সচার (রাউন্ড-রবিন)</div>`;
+      const rounds = [...new Set(t.matches.map(m => m.round))].sort((a, b) => a - b);
+      rounds.forEach(r => {
+        html += `<p style="font-weight:700;color:var(--g800);margin:12px 0 8px">রাউন্ড ${SPF.bn(r + 1)}</p>`;
+        html += t.matches.filter(m => m.round === r).map(m => this.fxRow(t, m, admin)).join('');
+      });
+      html += `<div class="round-title">📊 পয়েন্ট টেবিল</div>
+        <div class="tbl-wrap"><table>
+        <tr><th></th><th>দল</th><th>খ</th><th>জ</th><th>স</th><th>হ</th><th class="amt">গোল</th><th class="amt">পয়েন্ট</th></tr>` +
+        SPF.standings(t.matches, t.teams.map(x => x.id)).map((r, i) => `<tr><td><span class="pos-badge ${i === 0 ? 'g1' : ''}">${SPF.bn(i + 1)}</span></td>
+          <td>${UI.esc(this.teamName(t, r.id))}</td><td>${SPF.num(r.P)}</td><td>${SPF.num(r.W)}</td>
+          <td>${SPF.num(r.D)}</td><td>${SPF.num(r.L)}</td><td class="amt">${SPF.num(r.GF)}−${SPF.num(r.GA)}</td>
+          <td class="amt" style="font-weight:800">${SPF.num(r.Pts)}</td></tr>`).join('') + `</table></div>`;
+    }
+
+    if (champ) {
+      html += `<div class="champ" style="margin-top:16px"><div class="cup">🏆</div>
+        <div style="font-size:.9rem;color:#92400e">চ্যাম্পিয়ন</div><div class="nm">${UI.esc(this.teamName(t, champ))}</div></div>`;
+    }
+
+    html += admin ? `<div class="note" style="margin-top:12px">✏️ রেজাল্ট দাও: গোল/রান/পয়েন্ট লিখে <b>সেভ</b>, অথবা জেতার বাটনে চাপো (১–০ বসে যাবে)।</div>` : '';
+    document.getElementById('modalBox').innerHTML = html;
+  },
+  fxRow(t, m, admin) {
+    const A = this.teamName(t, m.a), B = this.teamName(t, m.b);
+    const hasScore = m.sA !== null && m.sA !== undefined && m.sB !== null && m.sB !== undefined;
+    const winA = m.played && m.winnerId === m.a, winB = m.played && m.winnerId === m.b;
+    const bye = m.a === null || m.b === null;
+    let right = '';
+    if (bye) right = `<span class="tag sport">বাই</span>`;
+    else if (admin) right = `
+      <span class="fx-ctrl">
+        <span class="fx-score"><input type="number" min="0" value="${m.sA === null ? '' : m.sA}" onchange="Tour.saveScore('${t.id}','${m.id}','a',this.value)"></span>
+        <span class="fx-vs">–</span>
+        <span class="fx-score"><input type="number" min="0" value="${m.sB === null ? '' : m.sB}" onchange="Tour.saveScore('${t.id}','${m.id}','b',this.value)"></span>
+        <span class="fx-actions">
+          <button class="fx-pick ${winA ? 'sel' : ''}" onclick="Tour.pickWinner('${t.id}','${m.id}','${m.a}')">১</button>
+          <button class="fx-pick ${winB ? 'sel2' : ''}" onclick="Tour.pickWinner('${t.id}','${m.id}','${m.b}')">২</button>
+          ${m.played ? `<button class="fx-pick" onclick="Tour.clearResult('${t.id}','${m.id}')">↺</button>` : ''}
+        </span>
+      </span>`;
+    else right = hasScore
+      ? `<b class="fx-vs">${SPF.bn(m.sA)} – ${SPF.bn(m.sB)}</b>`
+      : (m.played ? `<span class="tag sport">রেজাল্ট আছে</span>` : `<span class="fx-vs">আসছে…</span>`);
+    return `<div class="fx-row">
+      <span class="fx-team ${winA ? 'w' : ''}">${UI.esc(A)}${winA ? '<span class="win-mark">✔</span>' : ''}</span>
+      <span class="fx-vs">বনাম</span>
+      <span class="fx-team ${winB ? 'w' : ''}">${UI.esc(B)}${winB ? '<span class="win-mark">✔</span>' : ''}</span>
+      ${right}</div>`;
+  },
+  closeBig() { this._openId = null; UI.closeModal(); document.getElementById('modalBox').classList.remove('wide'); this.renderList(); }
+};
+</script>
+<script>
+/* ============ ঐচ্ছিক ফায়ারবেস ক্লাউড সিঙ্ক ============ */
+'use strict';
+
+const Cloud = {
+  enabled: false, db: null, pushing: false, applying: false, _t: null,
+  cfgKey: 'spf_fbconfig',
+
+  getConfig() { try { return JSON.parse(localStorage.getItem(this.cfgKey) || 'null'); } catch (e) { return null; } },
+  status(state) {
+    const chip = document.getElementById('cloudChip');
+    if (!chip) return;
+    const map = {
+      off: ['☁️ ক্লাউড বন্ধ', 'chip'],
+      ok: ['☁️ সংযুক্ত ✓', 'chip ok'],
+      busy: ['☁️ সিঙ্ক হচ্ছে…', 'chip'],
+      err: ['☁️ সংযোগ সমস্যা', 'chip err']
+    };
+    const [txt, cls] = map[state] || map.off;
+    chip.textContent = txt; chip.className = cls;
+  },
+
+  /* ---------- সেটআপ মোডাল ---------- */
+  openModal() {
+    const cfg = this.getConfig();
+    UI.modal(`
+      <h3>☁️ ক্লাউড সিঙ্ক <button class="close-x" onclick="UI.closeModal()">✕</button></h3>
+      <div class="note">সবার ফোনে <b>লাইভ একই হিসাব</b> দেখাতে ফায়ারবেস ফ্রি প্ল্যান ব্যবহার হয়। পুরো ধাপে-ধাপে গাইড আমাদের <b>README-BANGLA.md</b> ফাইলে আছে।</div>
+      <div class="step"><div class="n">১</div><p>console.firebase.google.com → নতুন প্রজেক্ট → <b>Realtime Database</b> খোলো (ফাংশন: শুরুতে "locked mode")।</p></div>
+      <div class="step"><div class="n">২</div><p>Project settings → "Your apps" → Web app যোগ করো → <b>firebaseConfig</b> অবজেক্টটা কপি করো।</p></div>
+      <div class="step"><div class="n">৩</div><p>Realtime Database → Rules ট্যাবে গিয়ে নিচের নিয়ম বসাও → Publish:</p></div>
+      <div class="note" style="font-family:monospace;font-size:.78rem;word-break:break-all">{ "rules": { ".read": true, ".write": false, "spf": { ".write": true } } }</div>
+      <div class="f-row"><label>firebaseConfig এখানে পেস্ট করো</label>
+        <textarea id="fbCfg" rows="5" placeholder='{
+  "apiKey": "AIza…",
+  "authDomain": "xyz.firebaseapp.com",
+  "databaseURL": "https://xyz-default-rtdb.firebaseio.com",
+  "projectId": "xyz"
+}'>${cfg ? UI.esc(JSON.stringify(cfg, null, 2)) : ''}</textarea></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" onclick="Cloud.connect()">🔗 সংযোগ করো</button>
+        <button class="btn ghost" onclick="Cloud.disconnect()">✖️ বন্ধ করো</button>
+      </div>`);
+  },
+
+  async connect() {
+    let cfg = null;
+    try { cfg = JSON.parse(document.getElementById('fbCfg').value.trim()); }
+    catch (e) {
+      // ইউজার হয়তো পুরো const firebaseConfig = {...} পেস্ট করেছে — জোর করে বের করি
+      const txt = document.getElementById('fbCfg').value;
+      const m = txt.match(/\{[\s\S]*\}/);
+      try { cfg = JSON.parse(m[0]); } catch (e2) { UI.toast('❌ জেসন ঠিক না — শুধু { … } অংশটা দাও'); return; }
+    }
+    if (!cfg || !cfg.databaseURL) { UI.toast('⚠️ databaseURL নেই — কনফিগটা পুরো দাও'); return; }
+    localStorage.setItem(this.cfgKey, JSON.stringify(cfg));
+    UI.closeModal();
+    this.status('busy'); UI.toast('☁️ ক্লাউডের সাথে যোগ হচ্ছে…');
+    const ok = await this.init(cfg);
+    if (ok) UI.toast('✅ ক্লাউড সিঙ্ক চালু — সবার ফোনে একই হিসাব');
+  },
+  disconnect() {
+    localStorage.removeItem(this.cfgKey);
+    location.reload();
+  },
+
+  /* ---------- ইনিট ও সিঙ্ক ---------- */
+  loadScript(src) {
+    return new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = src; s.onload = res; s.onerror = rej;
+      document.head.appendChild(s);
+    });
+  },
+  async init(cfg) {
+    cfg = cfg || this.getConfig();
+    if (!cfg) { this.status('off'); return false; }
+    try {
+      if (typeof firebase === 'undefined' || !firebase.database) {
+        await this.loadScript('https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js');
+        await this.loadScript('https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js');
+      }
+      if (!firebase.apps.length) firebase.initializeApp(cfg);
+      this.db = firebase.database();
+      this.enabled = true;
+      this.status('ok');
+      this.db.ref('spf').on('value', snap => this.onRemote(snap.val()));
+      this.push();
+      return true;
+    } catch (e) {
+      console.warn('cloud init failed', e);
+      this.enabled = false; this.status('err');
+      UI.toast('⚠️ ক্লাউড সংযোগ হয়নি — হিসাব এখন শুধু এই ফোনে চলছে');
+      return false;
+    }
+  },
+  push() {
+    if (!this.enabled || this.applying) return;
+    clearTimeout(this._t);
+    this._t = setTimeout(() => {
+      this.pushing = true;
+      try { this.db.ref('spf').set({ state: Store.state, ts: Date.now() }); } catch (e) { this.status('err'); }
+      setTimeout(() => { this.pushing = false; }, 700);
+    }, 600);
+  },
+  onRemote(remote) {
+    if (!remote || !remote.state || this.pushing) return;
+    const rt = remote.state.updatedAt || remote.ts || 0;
+    const lt = Store.state.updatedAt || 0;
+    if (rt > lt) {
+      this.applying = true;
+      Store.state = SPF.migrate(remote.state);
+      localStorage.setItem(Store.key, JSON.stringify(Store.state));
+      UI.renderAll();
+      setTimeout(() => { this.applying = false; }, 900);
+      UI.toast('☁️ ক্লাউড থেকে নতুন হিসাব এসেছে');
+    }
+  },
+  syncNow() {
+    if (!this.enabled) { this.openModal(); return; }
+    this.pushing = false;
+    this.db.ref('spf').once('value').then(snap => this.onRemote(snap.val())).then(() => {
+      this.push();
+      UI.toast('🔄 সিঙ্ক সম্পন্ন');
+    }).catch(() => UI.toast('⚠️ সিঙ্ক হয়নি — ইন্টারনেট দেখো'));
+  }
+};
+
+/* ============ অ্যাপ চালু ============ */
+UI.openCloud = () => Cloud.openModal(); // body-র চিপ/বাটন থেকে ডাকা হয়
+UI.tourModal = () => Tour.createModal();
+(function boot() {
+  document.addEventListener('DOMContentLoaded', async () => {
+    Store.load();
+    document.getElementById('siteName').textContent = S().settings.siteName;
+    document.getElementById('siteTag').textContent = '⚽ ' + S().settings.tagline + ' — ' + S().settings.village;
+    document.querySelectorAll('#tabs button').forEach(b => b.addEventListener('click', () => UI.go(b.dataset.page)));
+    UI.renderAll();
+    Cloud.status('off');
+    if (Cloud.getConfig()) await Cloud.init();
+  });
+})();
+</script>
+</body>
+</html>
