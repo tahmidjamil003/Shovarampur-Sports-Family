@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#14532d">
-<title>সুবারামপুর স্পোর্টস ফ্যামিলি — মাঠের হিসাব</title>
+<title>শোভারামপুর স্পোর্টস ফ্যামিলি — মাঠের হিসাব</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============ সুবারামপুর স্পোর্টস ফ্যামিলি — থিম ============ */
+/* ============ শোভারামপুর স্পোর্টস ফ্যামিলি — থিম ============ */
 :root {
   --g900: #0b3d2e; --g800: #0f4a35; --g700: #14532d; --g600: #16a34a; --g500: #22c55e; --g100: #dcfce7;
   --gold: #f59e0b; --gold-d: #b45309; --gold-l: #fde68a;
@@ -323,8 +323,8 @@ body:not(.is-admin) .admin-only { display: none !important; }
   <div class="hero-inner">
     <div class="crest">🏆</div>
     <div class="hero-txt">
-      <h1 id="siteName">সুবারামপুর স্পোর্টস ফ্যামিলি</h1>
-      <p id="siteTag">⚽ খেলায় ঐক্য, হিসাবে স্বচ্ছতা — সুবারামপুর</p>
+      <h1 id="siteName">শোভারামপুর স্পোর্টস ফ্যামিলি</h1>
+      <p id="siteTag">⚽ খেলায় ঐক্য, হিসাবে স্বচ্ছতা — শোভারামপুর</p>
     </div>
   </div>
 </header>
@@ -469,11 +469,11 @@ body:not(.is-admin) .admin-only { display: none !important; }
 <div id="toast"></div>
 
 <div style="max-width:980px;margin:10px auto 6px;padding:0 16px;color:var(--muted);font-size:.8rem;text-align:center">
-  🏆 <span id="footName">সুবারামপুর স্পোর্টস ফ্যামিলি</span> — ভালোবাসা দিয়ে বানানো · <span id="footDate"></span>
+  🏆 <span id="footName">শোভারামপুর স্পোর্টস ফ্যামিলি</span> — ভালোবাসা দিয়ে বানানো · <span id="footDate"></span>
 </div>
 <script>
 /* ============================================================
-   সুবারামপুর স্পোর্টস ফ্যামিলি — কোর লজিক (pure functions)
+   শোভারামপুর স্পোর্টস ফ্যামিলি — কোর লজিক (pure functions)
    ব্রাউজার ও Node দুই জায়গায় একই ফাইল চলে।
    ============================================================ */
 'use strict';
@@ -728,8 +728,8 @@ SPF.defaultState = function defaultState() {
     version: 1,
     updatedAt: Date.now(),
     settings: {
-      siteName: 'সুবারামপুর স্পোর্টস ফ্যামিলি',
-      village: 'সুবারামপুর',
+      siteName: 'শোভারামপুর স্পোর্টস ফ্যামিলি',
+      village: 'শোভারামপুর',
       tagline: 'খেলায় ঐক্য, হিসাবে স্বচ্ছতা',
       adminHash: SPF.sha256('1234'), // প্রথম লগইনের পরে বদলাতে বলা হবে
       pwChanged: false
@@ -1249,7 +1249,7 @@ const Tour = {
   createModal() {
     UI.modal(`
       <h3>🏆 নতুন টুর্নামেন্ট <button class="close-x" onclick="UI.closeModal()">✕</button></h3>
-      <div class="f-row"><label>টুর্নামেন্টের নাম *</label><input type="text" id="tName" placeholder="যেমন: সুবারামপুর শীতকালীন ফুটবল টুর্নামেন্ট ২০২৬"></div>
+      <div class="f-row"><label>টুর্নামেন্টের নাম *</label><input type="text" id="tName" placeholder="যেমন: শোভারামপুর শীতকালীন ফুটবল টুর্নামেন্ট ২০২৬"></div>
       <div class="f-row"><label>কোন খেলা?</label><select id="tSport">
         ${Object.keys(TOUR_SPORTS).map(s => `<option>${s}</option>`).join('')}</select></div>
       <div class="f-row"><label>ফরম্যাট</label><select id="tFmt">
@@ -1261,7 +1261,7 @@ const Tour = {
       <div class="f-row"><label>দল / খেলোয়াড়ের নাম (এক লাইনে একটা) *</label>
         <textarea id="tTeams" rows="5" placeholder="পূর্ব পাড়া ফাইভস
 পশ্চিম পাড়া ইউনাইটেড
-সুবারামপুর একাডেমি
+শোভারামপুর একাডেমি
 যুব এগ্রো ক্লাব"></textarea></div>
       <button class="btn block" onclick="Tour.create()">🎲 তৈরি করো</button>`);
     document.getElementById('tFmt').addEventListener('change', e => {
